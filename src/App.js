@@ -10,7 +10,14 @@ function Header() {
   return (
     <header className="w-full sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
-        <div className="text-xl md:text-2xl font-bold tracking-wide">Qskill</div>
+        <Link to="/" className="flex items-left">
+  <img
+    src="/logo.png"
+    alt="Qskill Logo"
+    className="h-8 md:h-10 w-auto"
+  />
+</Link>
+
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
@@ -114,6 +121,31 @@ function Verify() {
   );
 }
 
+function Apply() {
+  return (
+    <section className="min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-indigo-50 to-blue-100">
+      <Card className="rounded-2xl shadow-xl w-[90vw] max-w-md">
+        <CardContent className="p-8 text-center">
+          <h2 className="text-2xl font-semibold">Qskill Internship</h2>
+          <p className="text-sm text-zinc-600 mt-2">
+            Apply now to join our internship program and work on real-world projects.
+          </p>
+
+          <div className="mt-6">
+            <Button
+              className="rounded-xl w-full"
+              onClick={() => window.location.href = "https://forms.gle/QJAQS8AkiMKuRYEF8"}
+            >
+              Apply for Internship
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    </section>
+  );
+}
+
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -121,6 +153,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/verify" element={<Verify />} />
+        <Route path="/apply" element={<Apply />} />
       </Routes>
       <Footer />
     </BrowserRouter>
