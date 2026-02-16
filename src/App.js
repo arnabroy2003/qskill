@@ -4,7 +4,7 @@ import { Button } from "./components/ui/button";
 import { Card, CardContent } from "./components/ui/card";
 import { useState } from "react";
 import axios from "axios";
-import { ShieldCheck, Search, Loader2, Award, ExternalLink } from "lucide-react";
+import { ChevronRight, ArrowRight, Star, CheckCircle2, ShieldCheck, Search, Loader2, Award, ExternalLink, BadgeCheck, GraduationCap, Briefcase, Users } from "lucide-react";
 
 function Header() {
   const [open, setOpen] = useState(false);
@@ -27,7 +27,7 @@ function Header() {
           <Link className="hover:text-blue-600" to="/verify">Verify</Link>
           <Link className="hover:text-blue-600" to="/">About Us</Link>
           <Link className="hover:text-blue-600" to="/">Contact Us</Link>
-          <Button className="rounded-2xl">Login</Button>
+            <Button className="rounded-2xl">Login</Button>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -75,28 +75,300 @@ function Footer() {
 }
 
 function Home() {
+   const techs = [
+  { name: "React.js", logo: "https://cdn.worldvectorlogo.com/logos/react-2.svg" },
+  { name: "Python", logo: "https://cdn.worldvectorlogo.com/logos/python-5.svg" },
+  { name: "Node.js", logo: "https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" },
+  { name: "Tailwind CSS", logo: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" },
+  { name: "MongoDB", logo: "https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg" },
+  { name: "Next.js", logo: "https://cdn.worldvectorlogo.com/logos/next-js.svg" },
+
+  // Backend Frameworks
+  { name: "Django", logo: "https://cdn.worldvectorlogo.com/logos/django.svg" },
+  { name: "Flask", logo: "https://cdn.worldvectorlogo.com/logos/flask.svg" },
+  { name: "FastAPI", logo: "https://cdn.worldvectorlogo.com/logos/fastapi.svg" },
+
+  // Databases
+  { name: "PostgreSQL", logo: "https://cdn.worldvectorlogo.com/logos/postgresql.svg" },
+  { name: "MySQL", logo: "https://upload.wikimedia.org/wikipedia/en/d/dd/MySQL_logo.svg" },
+
+  // DevOps & Tools
+  { name: "Docker", logo: "https://cdn.worldvectorlogo.com/logos/docker.svg" },
+  { name: "Git", logo: "https://cdn.worldvectorlogo.com/logos/git-icon.svg" },
+  { name: "GitHub", logo: "https://cdn.worldvectorlogo.com/logos/github-icon-1.svg" },
+
+  // Cloud
+  { name: "AWS", logo: "https://cdn.worldvectorlogo.com/logos/amazon-web-services-2.svg" },
+  { name: "Vercel", logo: "https://cdn.worldvectorlogo.com/logos/vercel.svg" },
+];
+
+
+  const features = [
+    ["Live Training", "Interactive sessions with real-time doubt clearing.", "from-blue-500 to-indigo-600"],
+    ["Industry Curriculum", "Stay ahead with tools used by top tech giants.", "from-emerald-500 to-teal-600"],
+    ["Hands-on Projects", "Build portfolio-ready apps from scratch.", "from-pink-500 to-rose-600"],
+    ["Expert Mentorship", "1-on-1 guidance from industry veterans.", "from-purple-500 to-fuchsia-600"],
+    ["Training + Internship", "A dual-pathway to professional experience.", "from-amber-500 to-orange-600"],
+    ["Career Support", "Resume building and mock interview prep.", "from-cyan-500 to-sky-600"],
+  ];
+
+  const testimonials = [
+  {
+    name: "Ananya Sharma",
+    role: "Full Stack Intern",
+    text: "The live sessions were a game changer. Building a real E-commerce platform helped me ace my Amazon interview!",
+    img: "https://i.pravatar.cc/150?u=ananya"
+  },
+  {
+    name: "Rohan Gupta",
+    role: "Data Science Intern",
+    text: "Qskill doesn't just teach syntax; they teach problem-solving. The mentorship during the final project was invaluable.",
+    img: "https://i.pravatar.cc/150?u=rohan"
+  },
+  {
+    name: "Sanya Iyer",
+    role: "UI/UX Design Intern",
+    text: "Finally a program that focuses on industry-standard tools. My portfolio looks 10x more professional now.",
+    img: "https://i.pravatar.cc/150?u=sanya"
+  },
+  {
+    name: "Vikram Mehra",
+    role: "Python Developer",
+    text: "Verified certification helped me stand out on LinkedIn. I received three interview calls within a week!",
+    img: "https://i.pravatar.cc/150?u=vikram"
+  },
+  {
+    name: "Ishita Paul",
+    role: "Frontend Intern",
+    text: "From zero coding knowledge to deploying React apps. The step-by-step guidance is perfect for beginners.",
+    img: "https://i.pravatar.cc/150?u=ishita"
+  }
+];
+
+  const reviews = [1, 2, 3, 4, 5, 6]; // Added more for better loop
+
   return (
-    <section className="min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-        <Card className="rounded-2xl shadow-xl max-w-xl w-full">
-          <CardContent className="p-6 md:p-10 text-center">
-            <h1 className="text-2xl md:text-4xl font-bold">We’re Renovating 🚧</h1>
-            <p className="mt-4 text-zinc-600 text-sm md:text-base">
-              Our website is currently under renovation. We’re building something powerful for internships,
-              verification, and career growth.
+    <div className="bg-[#fcfdfe] text-slate-900 selection:bg-blue-100 overflow-x-hidden">
+      
+      {/* --- HERO SECTION --- */}
+      <section className="relative min-h-screen flex items-center pt-20">
+        {/* Animated Background Blobs */}
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute top-[10%] left-[10%] w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+          <div className="absolute top-[10%] right-[10%] w-72 h-72 bg-yellow-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+          <div className="absolute bottom-[20%] left-[20%] w-72 h-72 bg-pink-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 px-6 items-center">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }} 
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm font-medium mb-6">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+              </span>
+              Next Cohort Starts Soon
+            </div>
+            <h1 className="text-5xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight text-slate-900">
+              Master Skills. <br />
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+                Launch Careers.
+              </span>
+            </h1>
+            <p className="mt-8 text-lg text-slate-600 max-w-lg leading-relaxed">
+              Qskill bridge the gap between academics and industry with live mentorship, 
+              real-world engineering, and verified certifications.
             </p>
-            <div className="mt-6 flex flex-col sm:flex-row justify-center gap-3">
-              <Button asChild className="rounded-2xl w-full sm:w-auto">
-                <Link to="/verify">Verify Certificate</Link>
+            <div className="mt-10 flex flex-col sm:flex-row gap-4">
+              <Button className="rounded-full px-8 py-7 text-lg bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-200 transition-all hover:scale-105">
+                Explore Programs <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button variant="outline" className="rounded-2xl w-full sm:w-auto">
-                Explore Internships
+              <Button variant="outline" className="rounded-full px-8 py-7 text-lg border-slate-200 hover:bg-slate-50 transition-all">
+                Watch Demo
               </Button>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }} 
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="relative"
+          >
+            <motion.img
+              animate={{ y: [0, -20, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              src="https://illustrations.popsy.co/white/studying.svg"
+              alt="Learning Banner"
+              className="w-full max-w-2xl mx-auto drop-shadow-2xl"
+            />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* --- WHY JOIN - FEATURE GRID --- */}
+      <section className="py-32 max-w-7xl mx-auto px-6">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl font-bold tracking-tight">Why Choose Qskill?</h2>
+          <p className="text-slate-500 mt-4 text-lg">We don't just teach; we prepare you for the real world.</p>
+        </div>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {features.map((item, i) => (
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              whileHover={{ y: -10 }}
+            >
+              <Card className="h-full border-none bg-white shadow-sm hover:shadow-xl transition-all duration-300 group">
+                <CardContent className="p-10">
+                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${item[2]} mb-6 flex items-center justify-center text-white shadow-lg`}>
+                    <CheckCircle2 className="w-7 h-7" />
+                  </div>
+                  <h3 className="font-bold text-xl mb-3 text-slate-800">{item[0]}</h3>
+                  <p className="text-slate-500 leading-relaxed">{item[1]}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* --- TECH STACK - MARQUEE STYLE --- */}
+      <section className="py-24 bg-slate-50/50 border-y border-slate-100">
+        <h2 className="text-center text-sm font-semibold uppercase tracking-[0.2em] text-slate-400 mb-12">
+          Technologies you will master
+        </h2>
+        <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-8 md:gap-16 px-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
+          {techs.map((tech, i) => (
+            <div key={i} className="flex items-center gap-3">
+              <img src={tech.logo} alt={tech.name} className="w-8 h-8 object-contain" />
+              <span className="font-semibold text-slate-700">{tech.name}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* --- TESTIMONIALS - INFINITE SCROLL --- */}
+      <section className="py-32 bg-white overflow-hidden">
+  <div className="max-w-7xl mx-auto px-6 mb-16 flex flex-col md:flex-row items-end justify-between gap-6">
+    <div className="text-left">
+      <h2 className="text-4xl font-bold tracking-tight text-slate-900">Stories from our Alumni</h2>
+      <p className="text-slate-500 mt-3 text-lg">Real experiences from students who transformed their careers.</p>
+    </div>
+    
+    <motion.button 
+      whileHover={{ x: 5 }}
+      className="flex items-center gap-2 text-blue-600 font-bold text-lg group"
+    >
+      View all reviews 
+      <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+    </motion.button>
+  </div>
+
+  <div className="relative flex">
+    {/* Gradient Overlays for a "Fade" effect at the edges */}
+    <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white to-transparent z-10"></div>
+    <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent z-10"></div>
+
+    <motion.div
+      className="flex gap-8 whitespace-nowrap"
+      animate={{ x: ["0%", "-50%"] }}
+      // Increased duration to 60 for a slower, more premium feel
+      transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
+      // This pauses the scroll when someone hovers over a card
+      whileHover={{ scale: 1 }} 
+    >
+      {/* Duplicate array to create the infinite loop effect */}
+      {[...testimonials, ...testimonials].map((item, index) => (
+        <Card 
+          key={index} 
+          className="min-w-[400px] border-slate-100 shadow-sm rounded-[2rem] bg-slate-50/50 hover:bg-white hover:shadow-xl transition-all duration-500 border-none"
+        >
+          <CardContent className="p-10 whitespace-normal">
+            <div className="flex gap-1 mb-5 text-amber-400">
+              {[...Array(5)].map((_, star) => (
+                <Star key={star} className="w-4 h-4 fill-current" />
+              ))}
+            </div>
+            
+            <p className="text-slate-700 text-lg leading-relaxed mb-8">
+              "{item.text}"
+            </p>
+
+            <div className="flex items-center gap-4">
+              <div className="relative">
+                <img 
+                  src={item.img} 
+                  className="w-14 h-14 rounded-full object-cover ring-4 ring-white shadow-md" 
+                  alt={item.name} 
+                />
+                <div className="absolute -bottom-1 -right-1 bg-green-500 w-4 h-4 rounded-full border-2 border-white"></div>
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-900 text-lg">{item.name}</h4>
+                <p className="text-sm font-semibold text-blue-600 uppercase tracking-widest">
+                  {item.role}
+                </p>
+              </div>
             </div>
           </CardContent>
         </Card>
-      </motion.div>
-    </section>
+      ))}
+    </motion.div>
+  </div>
+</section>
+
+      {/* --- FAQ SECTION --- */}
+      <section className="py-32 bg-slate-50 px-6">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-16">Common Questions</h2>
+          <div className="space-y-4">
+            {[
+              ["What is the duration of the internship?", "We offer flexible tracks ranging from 30 to 90 days."],
+              ["Do I need prior coding experience?", "Not at all. We have 'zero-to-one' tracks designed for absolute beginners."],
+              ["Is the certification globally recognized?", "Yes, our certificates are cryptographically verified and industry-standard."]
+            ].map((item, i) => (
+              <motion.details 
+                key={i} 
+                className="group bg-white rounded-2xl p-2 shadow-sm border border-slate-100 overflow-hidden cursor-pointer open:ring-2 open:ring-blue-100 transition-all"
+              >
+                <summary className="list-none p-4 font-semibold text-lg flex justify-between items-center text-slate-700">
+                  {item[0]}
+                  <span className="transition-transform group-open:rotate-180 text-blue-500 font-light text-2xl">+</span>
+                </summary>
+                <div className="px-4 pb-6 text-slate-500 leading-relaxed border-t border-slate-50 mt-2 pt-4">
+                  {item[1]}
+                </div>
+              </motion.details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- FINAL CTA --- */}
+      <section className="py-24 px-6">
+        <div className="max-w-5xl mx-auto rounded-[3rem] bg-gradient-to-br from-blue-700 to-indigo-900 p-12 lg:p-20 text-center relative overflow-hidden shadow-2xl">
+           <div className="relative z-10 text-white">
+              <h2 className="text-4xl lg:text-5xl font-bold mb-6">Ready to jumpstart your career?</h2>
+              <p className="text-blue-100 text-lg mb-10 max-w-xl mx-auto">Join 1000+ students already learning and building with Qskill.</p>
+              <Button className="bg-white text-blue-700 hover:bg-blue-50 px-10 py-8 rounded-full text-xl font-bold transition-transform hover:scale-105">
+                Apply for Internship
+              </Button>
+           </div>
+           {/* Decorative circles */}
+           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl"></div>
+           <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-400/20 rounded-full translate-y-1/2 -translate-x-1/2 blur-2xl"></div>
+        </div>
+      </section>
+    </div>
   );
 }
 
