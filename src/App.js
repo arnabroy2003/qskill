@@ -144,8 +144,7 @@ function Home() {
     img: "https://i.pravatar.cc/150?u=ishita"
   }
 ];
-
-  const reviews = [1, 2, 3, 4, 5, 6]; // Added more for better loop
+ // Added more for better loop
 
   return (
     <div className="bg-[#fcfdfe] text-slate-900 selection:bg-blue-100 overflow-x-hidden">
