@@ -4,7 +4,7 @@ import { Button } from "./components/ui/button";
 import { Card, CardContent } from "./components/ui/card";
 import { useState } from "react";
 import axios from "axios";
-import { ChevronRight, ArrowRight, Star, CheckCircle2, ShieldCheck, Search, Loader2, Award, ExternalLink, BadgeCheck, GraduationCap, Briefcase, Users } from "lucide-react";
+import { ChevronRight, ArrowRight, Star, CheckCircle2, ShieldCheck, Search, Loader2, Award, ExternalLink } from "lucide-react";
 
 function Header() {
   const [open, setOpen] = useState(false);
