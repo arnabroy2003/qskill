@@ -4,6 +4,7 @@ import { Button } from "./components/ui/button";
 import { Card, CardContent } from "./components/ui/card";
 import { useState } from "react";
 import axios from "axios";
+import ContactPage from "./pages/contact"
 import { ChevronRight, ArrowRight, Star, CheckCircle2, ShieldCheck, Search, Loader2, Award, ExternalLink } from "lucide-react";
 
 function Header() {
@@ -23,10 +24,10 @@ function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-          <Link className="hover:text-blue-600" to="/">Internships</Link>
-          <Link className="hover:text-blue-600" to="/verify">Verify</Link>
-          <Link className="hover:text-blue-600" to="/">About Us</Link>
-          <Link className="hover:text-blue-600" to="/">Contact Us</Link>
+          <Link className="hover:text-brandPurple" to="/">Internships</Link>
+          <Link className="hover:text-brandPurple" to="/verify">Verify</Link>
+          <Link className="hover:text-brandPurple" to="/">About Us</Link>
+          <Link className="hover:text-brandPurple" to="/contact">Contact Us</Link>
             <Button className="rounded-2xl">Login</Button>
         </nav>
 
@@ -165,16 +166,16 @@ function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 text-brandPurple text-sm font-medium mb-6">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-brandPurple"></span>
               </span>
               Next Cohort Starts Soon
             </div>
-            <h1 className="text-5xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight text-slate-900">
+            <h1 className="text-5xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight text-orange-400">
               Master Skills. <br />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-brandPurple to-[#8B5CF6]">
                 Launch Careers.
               </span>
             </h1>
@@ -183,7 +184,7 @@ function Home() {
               real-world engineering, and verified certifications.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <Button className="rounded-full px-8 py-7 text-lg bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-200 transition-all hover:scale-105">
+              <Button className="rounded-full px-8 py-7 text-lg bg-blue-600 hover:bg-blue-700 shadow-lg shadow-purple-200 transition-all hover:scale-105">
                 Explore Programs <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
               <Button variant="outline" className="rounded-full px-8 py-7 text-lg border-slate-200 hover:bg-slate-50 transition-all">
@@ -265,7 +266,7 @@ function Home() {
     
     <motion.button 
       whileHover={{ x: 5 }}
-      className="flex items-center gap-2 text-blue-600 font-bold text-lg group"
+      className="flex items-center gap-2 text-brandPurple font-bold text-lg group"
     >
       View all reviews 
       <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
@@ -354,11 +355,11 @@ function Home() {
 
       {/* --- FINAL CTA --- */}
       <section className="py-24 px-6">
-        <div className="max-w-5xl mx-auto rounded-[3rem] bg-gradient-to-br from-blue-700 to-indigo-900 p-12 lg:p-20 text-center relative overflow-hidden shadow-2xl">
+        <div className="max-w-5xl mx-auto rounded-[3rem] bg-gradient-to-br from-purple-600 to-brandPurple p-12 lg:p-20 text-center relative overflow-hidden shadow-2xl">
            <div className="relative z-10 text-white">
               <h2 className="text-4xl lg:text-5xl font-bold mb-6">Ready to jumpstart your career?</h2>
               <p className="text-blue-100 text-lg mb-10 max-w-xl mx-auto">Join 1000+ students already learning and building with Qskill.</p>
-              <Button className="bg-white text-blue-700 hover:bg-blue-50 px-10 py-8 rounded-full text-xl font-bold transition-transform hover:scale-105">
+              <Button variant="outline" className="bg-white text-blue-700 hover:bg-blue-50 px-10 py-8 rounded-full text-xl font-bold transition-transform hover:scale-105">
                 Apply for Internship
               </Button>
            </div>
@@ -538,6 +539,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/verify" element={<Verify />} />
         <Route path="/apply" element={<Apply />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
