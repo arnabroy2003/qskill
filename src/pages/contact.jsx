@@ -97,6 +97,7 @@ const ContactPage = () => {
                 <a 
                   href="https://www.linkedin.com/company/qskill/" 
                   target="_blank" 
+                  rel="noopener noreferrer"
                   className="flex-1 flex items-center justify-center gap-2 py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-blue-700 transition-all group"
                 >
                   <Linkedin className="w-5 h-5" />
@@ -106,6 +107,7 @@ const ContactPage = () => {
                 <a 
                   href="https://www.youtube.com/@QSkill-tutorial" 
                   target="_blank" 
+                  rel="noopener noreferrer"
                   className="flex-1 flex items-center justify-center gap-2 py-4 border-2 border-slate-100 rounded-2xl font-bold hover:bg-red-50 hover:border-red-100 hover:text-red-600 transition-all"
                 >
                   <Youtube className="w-5 h-5" />
