@@ -397,7 +397,7 @@ function Verify() {
       setError("");
       setResult(null);
 
-      const res = await axios.get(`https://qskill-backend-1.onrender.com/verify/${certId}`);
+      const res = await axios.get(`https://qskill-backend.vercel.app/verify/${certId}`);
       setResult(res.data);
     } catch (err) {
       setError("❌ Certificate not found");
