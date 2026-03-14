@@ -1,11 +1,13 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import React from 'react';
 import { motion } from "framer-motion";
 import { Button } from "./components/ui/button";
 import { Card, CardContent } from "./components/ui/card";
 import { useState } from "react";
 import axios from "axios";
 import ContactPage from "./pages/contact"
-import { ChevronRight, ArrowRight, Star, CheckCircle2, ShieldCheck, Search, Loader2, Award, ExternalLink } from "lucide-react";
+import TestimonialsPage from "./pages/testimonial"
+import { ChevronRight, ArrowRight, Star, CheckCircle2, ShieldCheck, UserPlus, Users, Laptop, Send, Award, Search, Loader2, ExternalLink, Linkedin, Youtube, Mail, MapPin, ChevronUp } from "lucide-react";
 
 function Header() {
   const [open, setOpen] = useState(false);
@@ -55,22 +57,120 @@ function Header() {
 }
 
 function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <footer className="bg-zinc-900 text-zinc-300 mt-24">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-12 grid gap-6 md:grid-cols-2 text-center md:text-left">
-        <div>
-          <h2 className="text-xl font-semibold text-white">Qskill</h2>
-          <p className="mt-2 text-sm">Professional training with real-world hands-on projects.</p>
-        </div>
-        <div className="flex flex-wrap justify-center md:justify-end gap-4 text-sm">
-          <span>Internships</span>
-          <span>Verify</span>
-          <span>About Us</span>
-          <span>Contact Us</span>
-          <span>Login</span>
+    <footer className="bg-[#0f172a] text-slate-400 pt-20 relative overflow-hidden">
+      {/* Decorative Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
+      
+      <div className="max-w-7xl mx-auto px-6 pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+          
+          {/* Column 1: Brand Identity */}
+          <div className="space-y-6">
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-900/20">
+                Q
+              </div>
+              <span className="text-2xl font-extrabold text-white tracking-tight">Qskill</span>
+            </div>
+            <p className="text-sm leading-relaxed max-w-xs">
+              Empowering the next generation of tech leaders through high-impact live training and industry-recognized internships.
+            </p>
+            <div className="flex gap-4">
+              <motion.a 
+                whileHover={{ y: -3 }}
+                href="https://www.linkedin.com/company/qskill/" 
+                target="_blank"
+                className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-white hover:bg-blue-600 transition-colors"
+              >
+                <Linkedin size={18} />
+              </motion.a>
+              <motion.a 
+                whileHover={{ y: -3 }}
+                href="https://www.youtube.com/@QSkill-tutorial" 
+                target="_blank"
+                className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-white hover:bg-red-600 transition-colors"
+              >
+                <Youtube size={18} />
+              </motion.a>
+            </div>
+          </div>
+
+          {/* Column 2: Quick Links */}
+          <div>
+            <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-xs">Navigation</h4>
+            <ul className="space-y-4 text-sm">
+              {['Internships', 'Verify Certificate', 'About Us', 'Contact Us'].map((item) => (
+                <li key={item}>
+                  <Link to={`/${item.toLowerCase().replace(' ', '-')}`} className="hover:text-blue-400 transition-colors flex items-center group">
+                    <span className="w-0 group-hover:w-2 h-px bg-blue-400 mr-0 group-hover:mr-2 transition-all"></span>
+                    {item}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3: Contact Info */}
+          <div>
+            <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-xs">Reach Out</h4>
+            <ul className="space-y-4 text-sm">
+              <li className="flex items-start gap-3">
+                <MapPin size={18} className="text-blue-500 shrink-0" />
+                <span>Ghansoli, Navi Mumbai, <br />Maharashtra, India</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Mail size={18} className="text-blue-500 shrink-0" />
+                <a href="mailto:career@squarcell.com" className="hover:text-white transition-colors">career@squarcell.com</a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 4: Parent Company Card */}
+          <div className="relative">
+            <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-3xl backdrop-blur-sm">
+              <p className="text-[10px] font-bold text-blue-400 uppercase tracking-[0.2em] mb-3">Parent Company</p>
+              <h5 className="text-white font-bold text-lg mb-2">SR India</h5>
+              <p className="text-xs leading-relaxed mb-4 text-slate-400">
+                Qskill is a proud initiative by SR India, dedicated to excellence in professional development.
+              </p>
+              <a 
+                href="https://www.srindia.co/" 
+                target="_blank" 
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 text-xs font-bold text-white hover:text-blue-400 transition-colors group"
+              >
+                Visit SR India <ExternalLink size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="text-center text-xs pb-6">© {new Date().getFullYear()} Qskill. All rights reserved.</div>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-slate-800/50 bg-slate-900/50 backdrop-blur-md py-8">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-[10px] uppercase tracking-widest text-slate-500">
+            © {new Date().getFullYear()} Qskill Inc. All rights reserved. 
+            <span className="mx-2">|</span>
+            <span className="hover:text-white cursor-pointer transition-colors">Privacy Policy</span>
+          </p>
+          
+          <button 
+            onClick={scrollToTop}
+            className="group flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white hover:text-blue-400 transition-colors"
+          >
+            Back to Top
+            <div className="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center group-hover:border-blue-400 transition-colors">
+              <ChevronUp size={14} />
+            </div>
+          </button>
+        </div>
+      </div>
     </footer>
   );
 }
@@ -113,37 +213,48 @@ function Home() {
     ["Career Support", "Resume building and mock interview prep.", "from-cyan-500 to-sky-600"],
   ];
 
-  const testimonials = [
-  {
-    name: "Ananya Sharma",
-    role: "Full Stack Intern",
-    text: "The live sessions were a game changer. Building a real E-commerce platform helped me ace my Amazon interview!",
-    img: "https://i.pravatar.cc/150?u=ananya"
-  },
-  {
-    name: "Rohan Gupta",
-    role: "Data Science Intern",
-    text: "Qskill doesn't just teach syntax; they teach problem-solving. The mentorship during the final project was invaluable.",
-    img: "https://i.pravatar.cc/150?u=rohan"
-  },
-  {
-    name: "Sanya Iyer",
-    role: "UI/UX Design Intern",
-    text: "Finally a program that focuses on industry-standard tools. My portfolio looks 10x more professional now.",
-    img: "https://i.pravatar.cc/150?u=sanya"
-  },
-  {
-    name: "Vikram Mehra",
-    role: "Python Developer",
-    text: "Verified certification helped me stand out on LinkedIn. I received three interview calls within a week!",
-    img: "https://i.pravatar.cc/150?u=vikram"
-  },
-  {
-    name: "Ishita Paul",
-    role: "Frontend Intern",
-    text: "From zero coding knowledge to deploying React apps. The step-by-step guidance is perfect for beginners.",
-    img: "https://i.pravatar.cc/150?u=ishita"
-  }
+const testimonials = [
+{
+name: "Iknoor vran",
+role: "Front-End Developer",
+text: "Yeah all over internship experience is good enough to gain a handsome on experience on react based tasks, but I'm more eager to work on these tasks and I'm open to work in more internships and paid projects.",
+img: "https://res.cloudinary.com/dvqqjadcf/image/upload/v1773464498/irngg2ryhvxn7iobmhzt.jpg"
+},
+
+{
+name: "Vikash Ramdarash Chaurasiya",
+role: "Python Developer",
+text: "Completed my Python Development Internship at Qskill, where I built Python-based data processing pipelines and created visualization dashboards to extract actionable insights from datasets. Developed a Django-based chatbot module integrated with backend logic to automate query handling and improve user interaction.",
+img: "https://res.cloudinary.com/dvqqjadcf/image/upload/v1773464500/d9ixffupitk4f5yqos9o.jpg"
+},
+
+{
+name: "Bhavana S",
+role: "Python Developer",
+text: "Being my first internship, I had a great experience and was able to learn handling various Python libraries.",
+img: "https://res.cloudinary.com/dvqqjadcf/image/upload/v1773464510/y8ga9ixetr4woilnblvm.jpg"
+},
+
+{
+name: "Nisha Dnyaneshwar Patil",
+role: "Front-End Developer",
+text: "My internship experience was extremely valuable and career-shaping. It gave me exposure to real-time projects and helped me apply my academic knowledge in practical scenarios.",
+img: "https://res.cloudinary.com/dvqqjadcf/image/upload/v1773464511/snsyksktykwmndhyiydi.jpg"
+},
+
+{
+name: "Santosh Hinduja",
+role: "Basic Web Developer",
+text: "Your tasks helped me understand how to create industry level projects.",
+img: "https://res.cloudinary.com/dvqqjadcf/image/upload/v1773464544/i0uyolo6cgsyoztwwdcs.jpg"
+},
+
+{
+name: "Kanishka Chaudhary",
+role: "Basic Web Developer",
+text: "I had a great learning experience during my one-month Basic Web Development internship at Qskill. The mentors were supportive and the hands-on projects helped me understand real-world web development.",
+img: "https://res.cloudinary.com/dvqqjadcf/image/upload/v1773465703/IMG_20260210_082855_-_Kanishka_Chaudhary_us1bzf.jpg"
+}
 ];
  // Added more for better loop
 
@@ -256,6 +367,93 @@ function Home() {
         </div>
       </section>
 
+      {/* --- HOW IT WORKS SECTION --- */}
+<section className="py-32 bg-white relative overflow-hidden">
+  {/* Large Background Decorative Text */}
+  <div className="absolute top-10 left-1/2 -translate-x-1/2 text-[10rem] md:text-[15rem] font-black text-slate-50 select-none -z-0 tracking-tighter opacity-50">
+    STEPS
+  </div>
+
+  <div className="max-w-7xl mx-auto px-6 relative z-10">
+    <div className="text-center mb-20">
+      <motion.span 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="text-blue-600 font-bold tracking-[0.2em] uppercase text-sm"
+      >
+        Execution Roadmap
+      </motion.span>
+      <motion.h2 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-4xl md:text-5xl font-extrabold mt-4 text-slate-900"
+      >
+        How the Internship <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Works</span>
+      </motion.h2>
+    </div>
+
+    <div className="relative">
+      {/* Desktop Connecting Line */}
+      <div className="hidden lg:block absolute top-[2.75rem] left-0 w-full h-[2px] bg-slate-100 -z-0">
+        <motion.div 
+          initial={{ width: 0 }}
+          whileInView={{ width: "100%" }}
+          transition={{ duration: 1.5, ease: "easeInOut" }}
+          className="h-full bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500 opacity-40"
+        />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-4">
+        {[
+          { num: "01", title: "Apply", icon: <UserPlus />, desc: "Fill the application form and choose your internship program.", color: "from-blue-500 to-indigo-500" },
+          { num: "02", title: "Join Community", icon: <Users />, desc: "Get access to our student community for updates and guidance.", color: "from-indigo-500 to-purple-500" },
+          { num: "03", title: "Learn from Us", icon: <Laptop />, desc: "Follow our curated learning roadmap and build real projects.", color: "from-purple-500 to-pink-500" },
+          { num: "04", title: "Submit Projects", icon: <Send />, desc: "Complete tasks and submit your projects for evaluation.", color: "from-pink-500 to-rose-500" },
+          { num: "05", title: "Get Certificate", icon: <Award />, desc: "Receive your verified internship certificate after completion.", color: "from-rose-500 to-orange-500" },
+        ].map((step, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1 }}
+            className="relative flex flex-col items-center lg:items-start text-center lg:text-left group"
+          >
+            {/* Icon Bubble */}
+            <div className="relative mb-6">
+              <div className={`w-20 h-20 rounded-3xl bg-gradient-to-br ${step.color} p-[1px] shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3`}>
+                <div className="w-full h-full rounded-[1.7rem] bg-white flex items-center justify-center text-slate-700 group-hover:bg-transparent group-hover:text-white transition-all duration-300">
+                  {React.cloneElement(step.icon, { size: 28 })}
+                </div>
+              </div>
+              <div className="absolute -top-3 -right-3 w-8 h-8 bg-slate-900 text-white rounded-full flex items-center justify-center text-xs font-bold border-4 border-white">
+                {step.num}
+              </div>
+            </div>
+
+            {/* Text */}
+            <h3 className="text-xl font-bold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors">
+              {step.title}
+            </h3>
+            <p className="text-slate-500 text-sm leading-relaxed px-4 lg:px-0">
+              {step.desc}
+            </p>
+
+            {/* Mobile Arrow */}
+            {i !== 4 && (
+              <div className="lg:hidden my-6 text-slate-200">
+                <ArrowRight className="rotate-90 md:rotate-0 w-6 h-6" />
+              </div>
+            )}
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
       {/* --- TESTIMONIALS - INFINITE SCROLL --- */}
       <section className="py-32 bg-white overflow-hidden">
   <div className="max-w-7xl mx-auto px-6 mb-16 flex flex-col md:flex-row items-end justify-between gap-6">
@@ -268,7 +466,7 @@ function Home() {
       whileHover={{ x: 5 }}
       className="flex items-center gap-2 text-brandPurple font-bold text-lg group"
     >
-      View all reviews 
+      <Link to="/testimonial" onClick={() => window.scrollTo(0,0)}>View all reviews</Link>
       <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
     </motion.button>
   </div>
@@ -359,7 +557,12 @@ function Home() {
            <div className="relative z-10 text-white">
               <h2 className="text-4xl lg:text-5xl font-bold mb-6">Ready to jumpstart your career?</h2>
               <p className="text-blue-100 text-lg mb-10 max-w-xl mx-auto">Join 1000+ students already learning and building with Qskill.</p>
-              <Button variant="outline" className="bg-white text-blue-700 hover:bg-blue-50 px-10 py-8 rounded-full text-xl font-bold transition-transform hover:scale-105">
+              <Button variant="outline" className="bg-white text-blue-700 hover:bg-blue-50 px-10 py-8 rounded-full text-xl font-bold transition-transform hover:scale-105" onClick={() =>
+    window.open(
+      "https://docs.google.com/forms/d/e/1FAIpQLScU5wWqA_R7i0UH3Y_qUXMsGSSYfp_riGwHSqxNOXKWuC4m2g/viewform",
+      "_blank"
+    )
+  }>
                 Apply for Internship
               </Button>
            </div>
@@ -540,6 +743,7 @@ export default function App() {
         <Route path="/verify" element={<Verify />} />
         <Route path="/apply" element={<Apply />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/testimonial" element={<TestimonialsPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
