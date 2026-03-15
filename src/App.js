@@ -1,57 +1,132 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 import React from 'react';
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "./components/ui/button";
 import { Card, CardContent } from "./components/ui/card";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import ContactPage from "./pages/contact"
 import TestimonialsPage from "./pages/testimonial"
-import { ChevronRight, ArrowRight, Star, CheckCircle2, ShieldCheck, UserPlus, Users, Laptop, Send, Award, Search, Loader2, ExternalLink, Linkedin, Youtube, Mail, MapPin, ChevronUp } from "lucide-react";
+import InternshipPage from "./pages/internship"
+import ProgramDetailPage from "./pages/programdetails"
+import { ChevronRight, Menu, X, User, ArrowRight, Star, CheckCircle2, ShieldCheck, UserPlus, Users, Laptop, Send, Award, Search, Loader2, ExternalLink, Linkedin, Youtube, Mail, MapPin, ChevronUp } from "lucide-react";
 
 function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [hoveredLink, setHoveredLink] = useState(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: 'Internships', path: '/internship' },
+    { name: 'Verify', path: '/verify' },
+    { name: 'About Us', path: '/about' },
+    { name: 'Contact Us', path: '/contact' },
+  ];
 
   return (
-    <header className="w-full sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
-        <Link to="/" className="flex items-left">
-  <img
-    src="https://res.cloudinary.com/dvqqjadcf/image/upload/v1771142458/qskill_logo_trans_rv9jn5.png"
-    alt="Qskill Logo"
-    className="h-8 md:h-10 w-auto"
-  />
-</Link>
+    <header 
+      className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 border-b ${
+        scrolled 
+        ? "bg-white/80 backdrop-blur-md border-slate-200 py-3 shadow-sm" 
+        : "bg-white border-transparent py-4"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 md:px-8 flex items-center justify-between">
+        
+        {/* LOGO */}
+        <Link to="/" className="flex items-center transition-opacity hover:opacity-80">
+          <img
+            src="https://res.cloudinary.com/dvqqjadcf/image/upload/v1771142458/qskill_logo_trans_rv9jn5.png"
+            alt="Qskill Logo"
+            className="h-8 md:h-9 w-auto"
+          />
+        </Link>
 
-
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-          <Link className="hover:text-brandPurple" to="/">Internships</Link>
-          <Link className="hover:text-brandPurple" to="/verify">Verify</Link>
-          <Link className="hover:text-brandPurple" to="/">About Us</Link>
-          <Link className="hover:text-brandPurple" to="/contact">Contact Us</Link>
-            <Button className="rounded-2xl">Login</Button>
+        {/* DESKTOP NAV */}
+        <nav className="hidden md:flex items-center" onMouseLeave={() => setHoveredLink(null)}>
+          <div className="flex items-center mr-6">
+            {navLinks.map((link) => (
+              <Link 
+                key={link.name} 
+                to={link.path}
+                onMouseEnter={() => setHoveredLink(link.name)}
+                className={`relative px-4 py-2 text-[14px] font-medium transition-colors duration-300 ${
+                  location.pathname === link.path ? "text-brandPurple" : "text-slate-500 hover:text-slate-900"
+                }`}
+              >
+                {link.name}
+                
+                {/* Magnetic Hover/Active Underline */}
+                <AnimatePresence>
+                  {(hoveredLink === link.name || location.pathname === link.path) && (
+                    <motion.div 
+                      layoutId="nav-pill"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className={`absolute bottom-0 left-2 right-2 h-[2px] rounded-full ${
+                        location.pathname === link.path ? "bg-brandPurple" : "bg-slate-300"
+                      }`}
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                </AnimatePresence>
+              </Link>
+            ))}
+          </div>
+          
+          <Button 
+            className="h-9 px-5 rounded-full bg-brandPurple hover:bg-[#5B21B6] text-white text-xs font-bold transition-all hover:shadow-lg hover:shadow-purple-200 active:scale-95 flex items-center gap-2"
+          >
+            <User size={14} strokeWidth={3} />
+            Login
+          </Button>
         </nav>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-2xl"
-          onClick={() => setOpen(!open)}
-        >
-          ☰
+        {/* MOBILE TOGGLE */}
+        <button className="md:hidden p-1 text-slate-700" onClick={() => setOpen(!open)}>
+          {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Nav */}
-      {open && (
-        <div className="md:hidden bg-white border-t px-4 py-4 flex flex-col gap-3 text-sm">
-          <Link to="/" onClick={() => setOpen(false)}>Internships</Link>
-          <Link to="/verify" onClick={() => setOpen(false)}>Verify</Link>
-          <Link to="/" onClick={() => setOpen(false)}>About Us</Link>
-          <Link to="/" onClick={() => setOpen(false)}>Contact Us</Link>
-          <Button className="rounded-xl w-full">Login</Button>
-        </div>
-      )}
+      {/* MOBILE NAV MENU */}
+      <AnimatePresence>
+        {open && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-white border-t border-slate-100 overflow-hidden"
+          >
+            <div className="flex flex-col p-4 gap-1">
+              {navLinks.map((link) => (
+                <Link 
+                  key={link.name}
+                  to={link.path} 
+                  onClick={() => setOpen(false)}
+                  className={`px-4 py-3 rounded-xl text-sm font-semibold ${
+                    location.pathname === link.path ? "bg-purple-50 text-brandPurple" : "text-slate-600"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              ))}
+              <div className="px-4 py-2">
+                <Button className="w-full h-10 bg-brandPurple text-white rounded-xl text-sm font-bold">
+                  Portal Login
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
@@ -744,6 +819,8 @@ export default function App() {
         <Route path="/apply" element={<Apply />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/testimonial" element={<TestimonialsPage />} />
+        <Route path="/internship" element={<InternshipPage />} />
+        <Route path="/internship/:id" element={<ProgramDetailPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
