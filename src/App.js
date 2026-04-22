@@ -6,6 +6,8 @@ import { Card, CardContent } from "./components/ui/card";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ContactPage from "./pages/contact"
+import AboutPage from "./pages/about"
+import HireFromUs from "./pages/hire"
 import TestimonialsPage from "./pages/testimonial"
 import InternshipPage from "./pages/internship"
 import ProgramDetailPage from "./pages/programdetails"
@@ -83,6 +85,7 @@ function Header() {
           </div>
           
           <Button 
+          onClick={() => window.location.href = "https://student.qskill.in/"}
             className="h-9 px-5 rounded-full bg-brandPurple hover:bg-[#5B21B6] text-white text-xs font-bold transition-all hover:shadow-lg hover:shadow-purple-200 active:scale-95 flex items-center gap-2"
           >
             <User size={14} strokeWidth={3} />
@@ -119,7 +122,7 @@ function Header() {
                 </Link>
               ))}
               <div className="px-4 py-2">
-                <Button className="w-full h-10 bg-brandPurple text-white rounded-xl text-sm font-bold">
+                <Button onClick={() => window.location.href = "https://student.qskill.in/"} className="w-full h-10 bg-brandPurple text-white rounded-xl text-sm font-bold">
                   Portal Login
                 </Button>
               </div>
@@ -177,18 +180,30 @@ function Footer() {
 
           {/* Column 2: Quick Links */}
           <div>
-            <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-xs">Navigation</h4>
-            <ul className="space-y-4 text-sm">
-              {['Internships', 'Verify Certificate', 'About Us', 'Contact Us'].map((item) => (
-                <li key={item}>
-                  <Link to={`/${item.toLowerCase().replace(' ', '-')}`} className="hover:text-blue-400 transition-colors flex items-center group">
-                    <span className="w-0 group-hover:w-2 h-px bg-blue-400 mr-0 group-hover:mr-2 transition-all"></span>
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+  <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-xs">
+    Navigation
+  </h4>
+
+  <ul className="space-y-4 text-sm">
+    {[
+      { name: "Internships", path: "/internship" },
+      { name: "Verify Certificate", path: "/verify" },
+      { name: "About Us", path: "/about" },
+      { name: "Contact Us", path: "/contact" }
+    ].map((item) => (
+      <li key={item.name}>
+        <Link
+          to={item.path}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="hover:text-blue-400 transition-colors flex items-center group"
+        >
+          <span className="w-0 group-hover:w-2 h-px bg-blue-400 mr-0 group-hover:mr-2 transition-all"></span>
+          {item.name}
+        </Link>
+      </li>
+    ))}
+  </ul>
+</div>
 
           {/* Column 3: Contact Info */}
           <div>
@@ -370,9 +385,11 @@ img: "https://res.cloudinary.com/dvqqjadcf/image/upload/v1773465703/IMG_20260210
               real-world engineering, and verified certifications.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
+              <Link to="/internship">
               <Button className="rounded-full px-8 py-7 text-lg bg-blue-600 hover:bg-blue-700 shadow-lg shadow-purple-200 transition-all hover:scale-105">
                 Explore Programs <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
+              </Link>
               <Button variant="outline" className="rounded-full px-8 py-7 text-lg border-slate-200 hover:bg-slate-50 transition-all">
                 Watch Demo
               </Button>
@@ -632,14 +649,11 @@ img: "https://res.cloudinary.com/dvqqjadcf/image/upload/v1773465703/IMG_20260210
            <div className="relative z-10 text-white">
               <h2 className="text-4xl lg:text-5xl font-bold mb-6">Ready to jumpstart your career?</h2>
               <p className="text-blue-100 text-lg mb-10 max-w-xl mx-auto">Join 1000+ students already learning and building with Qskill.</p>
-              <Button variant="outline" className="bg-white text-blue-700 hover:bg-blue-50 px-10 py-8 rounded-full text-xl font-bold transition-transform hover:scale-105" onClick={() =>
-    window.open(
-      "https://docs.google.com/forms/d/e/1FAIpQLScU5wWqA_R7i0UH3Y_qUXMsGSSYfp_riGwHSqxNOXKWuC4m2g/viewform",
-      "_blank"
-    )
-  }>
+              <Link to="/internship">
+              <Button onClick={() => window.scrollTo({top: 470, behavior: 'smooth'})} variant="outline" className="bg-white text-blue-700 hover:bg-blue-50 px-10 py-8 rounded-full text-xl font-bold transition-transform hover:scale-105">
                 Apply for Internship
               </Button>
+              </Link>
            </div>
            {/* Decorative circles */}
            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl"></div>
@@ -818,6 +832,8 @@ export default function App() {
         <Route path="/verify" element={<Verify />} />
         <Route path="/apply" element={<Apply />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/hirefromus" element={<HireFromUs />} />
         <Route path="/testimonial" element={<TestimonialsPage />} />
         <Route path="/internship" element={<InternshipPage />} />
         <Route path="/internship/:id" element={<ProgramDetailPage />} />

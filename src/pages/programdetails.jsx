@@ -164,7 +164,7 @@ const ProgramDetailPage = () => {
                 </div>
               </div>
 
-              <Button className="w-full py-8 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-700 text-white text-xl font-bold shadow-xl shadow-blue-200 hover:scale-[1.02] transition-all active:scale-95 group">
+              <Button onClick={() => window.open("https://forms.gle/zkMoJvM1k2rQZdbA8", "_blank")} className="w-full py-8 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-700 text-white text-xl font-bold shadow-xl shadow-blue-200 hover:scale-[1.02] transition-all active:scale-95 group">
                 Apply Now <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
 
