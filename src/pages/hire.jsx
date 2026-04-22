@@ -1,14 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Building2, Users2, CheckCircle2, UserCheck, 
+  Building2, CheckCircle2, UserCheck, 
   Briefcase, Search, MessageSquare, Handshake,
   ArrowRight, Sparkles, TrendingUp, ShieldCheck
 } from 'lucide-react';
 import { Button } from "../components/ui/button";
 
 const HireFromUs = () => {
-  const brandPurple = "#6D28D9";
+//   const brandPurple = "#6D28D9";
 
   const benefits = [
     { title: "Pre-trained Talent", desc: "Industry-ready candidates equipped with the latest tech stacks.", icon: <UserCheck /> },

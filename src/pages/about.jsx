@@ -7,7 +7,7 @@ import {
 import { Link } from 'react-router-dom';
 
 const AboutPage = () => {
-  const brandPurple = "#6D28D9";
+//   const brandPurple = "#6D28D9";
 
   const missionPoints = [
     { text: "Industry hands-on experience through project-based learning.", icon: <Rocket className="text-blue-500" /> },
