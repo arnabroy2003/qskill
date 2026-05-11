@@ -11,7 +11,7 @@ import HireFromUs from "./pages/hire"
 import TestimonialsPage from "./pages/testimonial"
 import InternshipPage from "./pages/internship"
 import ProgramDetailPage from "./pages/programdetails"
-import { ChevronRight, Menu, X, User, ArrowRight, Star, CheckCircle2, ShieldCheck, UserPlus, Users, Laptop, Send, Award, Search, Loader2, ExternalLink, Linkedin, Youtube, Mail, MapPin, ChevronUp } from "lucide-react";
+import { ChevronRight, Menu, Trophy, Gift, Users2, Rocket, X, Banknote, Globe2, PlaneLanding, GraduationCap, User, ArrowRight, Star, CheckCircle2, ShieldCheck, UserPlus, Users, Laptop, Send, Award, Search, Loader2, ExternalLink, Linkedin, Youtube, Mail, MapPin, ChevronUp } from "lucide-react";
 
 function Header() {
   const [open, setOpen] = useState(false);
@@ -346,6 +346,58 @@ text: "I had a great learning experience during my one-month Basic Web Developme
 img: "https://res.cloudinary.com/dvqqjadcf/image/upload/v1773465703/IMG_20260210_082855_-_Kanishka_Chaudhary_us1bzf.jpg"
 }
 ];
+
+const countries = [
+  {
+    name: "USA",
+    flag: "https://flagcdn.com/w80/us.png",
+  },
+  {
+    name: "UK",
+    flag: "https://flagcdn.com/w80/gb.png",
+  },
+  {
+    name: "New Zealand",
+    flag: "https://flagcdn.com/w80/nz.png",
+  },
+  {
+    name: "Japan",
+    flag: "https://flagcdn.com/w80/jp.png",
+  },
+  {
+    name: "Australia",
+    flag: "https://flagcdn.com/w80/au.png",
+  },
+  {
+    name: "Ukraine",
+    flag: "https://flagcdn.com/w80/ua.png",
+  },
+  {
+    name: "Russia",
+    flag: "https://flagcdn.com/w80/ru.png",
+  },
+];
+
+const perks = [
+    { 
+      title: "Premium Swag", 
+      desc: "Earn exclusive hoodies, bottles, and tech accessories.", 
+      icon: <Gift className="text-purple-500" />,
+      color: "purple" 
+    },
+    { 
+      title: "Leadership Skills", 
+      desc: "Nurture your representational skills and lead your campus.", 
+      icon: <Trophy className="text-amber-500" />,
+      color: "amber" 
+    },
+    { 
+      title: "Network & Grow", 
+      desc: "Connect with like-minded student leaders across India.", 
+      icon: <Users2 className="text-blue-500" />,
+      color: "blue" 
+    }
+  ];
  // Added more for better loop
 
   return (
@@ -546,6 +598,204 @@ img: "https://res.cloudinary.com/dvqqjadcf/image/upload/v1773465703/IMG_20260210
   </div>
 </section>
 
+<section className="py-32 bg-white relative overflow-hidden">
+      {/* Background Decorative Element */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-50 rounded-full blur-[120px] -z-10 opacity-60"></div>
+
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          
+          {/* LEFT: CONTENT & VALUE PROP */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            <div>
+              <motion.span 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                className="text-blue-600 font-bold tracking-[0.2em] uppercase text-sm"
+              >
+                Global Pathways
+              </motion.span>
+              <h2 className="text-4xl md:text-6xl font-extrabold mt-4 text-slate-900 leading-tight">
+                Start in India, <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  Succeed Abroad.
+                </span>
+              </h2>
+            </div>
+
+            <p className="text-slate-600 text-lg leading-relaxed">
+              Begin your MS journey with select international universities right here in India. Complete your initial semesters locally and transition abroad to finish your degree—**saving up to 40% on total education costs.**
+            </p>
+
+            <div className="grid sm:grid-cols-2 gap-6">
+              <div className="flex items-start gap-4 p-4 rounded-2xl bg-blue-50/50 border border-blue-100">
+                <Banknote className="text-blue-600 shrink-0" size={24} />
+                <div>
+                  <h4 className="font-bold text-slate-900 text-sm">Massive Cost Savings</h4>
+                  <p className="text-xs text-slate-500 mt-1">Lower tuition fees and living expenses for the first year.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 p-4 rounded-2xl bg-indigo-50/50 border border-indigo-100">
+                <PlaneLanding className="text-indigo-600 shrink-0" size={24} />
+                <div>
+                  <h4 className="font-bold text-slate-900 text-sm">Seamless Transition</h4>
+                  <p className="text-xs text-slate-500 mt-1">Guaranteed credit transfers to partner global universities.</p>
+                </div>
+              </div>
+            </div>
+
+            <Button className="rounded-full px-10 py-8 bg-slate-900 hover:bg-blue-700 text-white font-bold text-lg shadow-xl shadow-blue-100 transition-all hover:scale-105 group">
+              Explore MS Programs <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </motion.div>
+
+          {/* RIGHT: INTERACTIVE COUNTRY GRID */}
+          <div className="relative">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              {countries.map((country, i) => (
+                <motion.div
+                  key={i}
+                  whileHover={{ y: -5, scale: 1.05 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex flex-col items-center justify-center gap-3 hover:shadow-xl hover:border-blue-200 transition-all group cursor-pointer"
+                >
+                  <img
+                    src={country.flag}
+                    alt={country.name}
+                    className="w-14 h-10 object-cover rounded-md shadow-sm group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <span className="font-bold text-slate-700 text-sm tracking-tight">{country.name}</span>
+                </motion.div>
+              ))}
+              
+              {/* Special "Global" Card */}
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="col-span-2 sm:col-span-1 bg-gradient-to-br from-blue-600 to-indigo-700 p-6 rounded-[2rem] flex flex-col items-center justify-center text-white text-center shadow-lg"
+              >
+                <Globe2 className="w-8 h-8 mb-2 animate-pulse" />
+                <span className="text-[10px] font-bold uppercase tracking-widest opacity-80">And More</span>
+                <span className="font-bold text-sm">Global Partners</span>
+              </motion.div>
+            </div>
+
+            {/* Floating Trust Badge */}
+            <motion.div 
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity }}
+              className="absolute -bottom-20 -left-40 bg-white shadow-2xl rounded-2xl p-4 flex items-center gap-3 border border-slate-100 hidden md:flex"
+            >
+              <div className="w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
+                <GraduationCap size={20} />
+              </div>
+              <div>
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter leading-none">University Partner</p>
+                <p className="text-sm font-bold text-slate-900 mt-1">Verified MS Degree</p>
+              </div>
+            </motion.div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section className="py-32 bg-slate-900 relative overflow-hidden">
+      {/* Decorative Background Glows */}
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] translate-x-1/2 translate-y-1/2" />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          
+          {/* LEFT: CONTENT AREA */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            <div>
+              <motion.div 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-purple-400 text-xs font-bold uppercase tracking-[0.2em] mb-6"
+              >
+                <Star size={14} className="animate-pulse" />
+                Leadership Program
+              </motion.div>
+              
+              <h2 className="text-4xl md:text-6xl font-extrabold text-white leading-tight">
+                Become our <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
+                  Brand Ambassador.
+                </span>
+              </h2>
+            </div>
+
+            <p className="text-slate-400 text-lg leading-relaxed max-w-xl">
+              Apply to become an Ambassador for Qskill! Represent us on your campus, lead fellow students, and level up your leadership skills while earning premium swag and verified certificates.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-5">
+              <Button className="rounded-full px-10 py-8 bg-purple-600 hover:bg-purple-700 text-white font-bold text-lg shadow-xl shadow-purple-900/20 transition-all hover:scale-105 group">
+                Join Now <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
+              <div className="flex items-center gap-3 px-6 py-4 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm">
+                <ShieldCheck className="text-emerald-400" size={20} />
+                <span className="text-slate-300 text-sm font-semibold">Official Certification</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* RIGHT: PERKS BENTO GRID */}
+          <div className="grid gap-6">
+            <div className="grid sm:grid-cols-2 gap-6">
+              {perks.slice(0, 2).map((perk, i) => (
+                <motion.div
+                  key={i}
+                  whileHover={{ y: -10 }}
+                  className="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-[2.5rem] group transition-all hover:bg-white/10"
+                >
+                  <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    {perk.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">{perk.title}</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed">{perk.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+            
+            {/* Wide Highlight Card */}
+            <motion.div 
+              whileHover={{ y: -10 }}
+              className="bg-gradient-to-r from-purple-600/20 to-blue-600/20 backdrop-blur-md border border-white/10 p-8 rounded-[2.5rem] flex flex-col md:flex-row items-center gap-8 group"
+            >
+              <div className="w-20 h-20 bg-white/10 rounded-3xl flex items-center justify-center shrink-0">
+                <Rocket className="text-white animate-bounce" size={32} />
+              </div>
+              <div className="text-center md:text-left">
+                <h3 className="text-2xl font-bold text-white mb-2">Level Up Your Career</h3>
+                <p className="text-slate-400 text-sm max-w-xs">Gain inherent leadership and representational skills that companies value.</p>
+              </div>
+            </motion.div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Background Icon Watermark */}
+      <div className="absolute top-1/2 right-0 -translate-y-1/2 opacity-[0.02] pointer-events-none">
+        <Users2 size={600} className="text-white" />
+      </div>
+    </section>
+
       {/* --- TESTIMONIALS - INFINITE SCROLL --- */}
       <section className="py-32 bg-white overflow-hidden">
   <div className="max-w-7xl mx-auto px-6 mb-16 flex flex-col md:flex-row items-end justify-between gap-6">
@@ -730,7 +980,7 @@ function Verify() {
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
             <input
               className="w-full rounded-2xl border border-zinc-700/50 bg-zinc-800/60 px-11 py-4 text-white outline-none transition-all placeholder:text-zinc-500 focus:border-blue-500/60 focus:ring-2 focus:ring-blue-500/40"
-              placeholder="Enter Certificate ID (e.g. QS-2026-0193)"
+              placeholder="Enter Certificate ID (e.g. qspy202604599)"
               value={certId}
               onChange={(e) => setCertId(e.target.value)}
             />
