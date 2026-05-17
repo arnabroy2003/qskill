@@ -1,6 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Linkedin, Youtube, Send, ArrowUpRight, Phone } from 'lucide-react';
+import emailjs from "@emailjs/browser";
+import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 // import { Button } from "../components/ui/button"
 // import { Input } from "../components/ui/input"
 // import { Textarea } from "../components/ui/textarea"
@@ -34,7 +37,47 @@ const ContactPage = () => {
     visible: { y: 0, opacity: 1 }
   };
 
+  const [formData, setFormData] = useState({
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
+});
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    await emailjs.send(
+      "service_53aj2kk",
+      "template_1egx63n",
+      {
+        user_name: formData.name,
+        user_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      },
+      "NizOFzn8fSHAQGVd8"
+    );
+
+    toast.success("Message sent successfully ❤️");
+
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+
+  } catch (error) {
+    console.log(error);
+    alert("Failed to send message");
+  }
+};
+
   return (
+    <>
+    <Toaster />
     <div className="min-h-screen bg-[#f8fafc] py-20 px-6 relative overflow-hidden">
       {/* Decorative Background Elements */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100/50 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2" />
@@ -129,29 +172,41 @@ const ContactPage = () => {
           {/* RIGHT: Modern Contact Form */}
           <motion.div variants={itemVariants} className="lg:col-span-7">
             <div className="bg-white/70 backdrop-blur-xl p-10 md:p-14 rounded-[3rem] shadow-2xl shadow-blue-100/50 border border-white">
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-slate-700 ml-1">Full Name</label>
-                    <Input placeholder="John Doe" className="h-14 rounded-2xl border-slate-100 bg-white/50 focus:bg-white focus:ring-blue-500 transition-all" />
+                    <Input value={formData.name}
+  onChange={(e) =>
+    setFormData({ ...formData, name: e.target.value })
+  } placeholder="John Doe" className="h-14 rounded-2xl border-slate-100 bg-white/50 focus:bg-white focus:ring-blue-500 transition-all" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-slate-700 ml-1">Email Address</label>
-                    <Input type="email" placeholder="john@example.com" className="h-14 rounded-2xl border-slate-100 bg-white/50 focus:bg-white focus:ring-blue-500 transition-all" />
+                    <Input value={formData.email}
+  onChange={(e) =>
+    setFormData({ ...formData, email: e.target.value })
+  } type="email" placeholder="john@example.com" className="h-14 rounded-2xl border-slate-100 bg-white/50 focus:bg-white focus:ring-blue-500 transition-all" />
                   </div>
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-slate-700 ml-1">Subject</label>
-                  <Input placeholder="Inquiry about React Internship" className="h-14 rounded-2xl border-slate-100 bg-white/50 focus:bg-white focus:ring-blue-500 transition-all" />
+                  <Input value={formData.subject}
+  onChange={(e) =>
+    setFormData({ ...formData, subject: e.target.value })
+  } placeholder="Inquiry about React Internship" className="h-14 rounded-2xl border-slate-100 bg-white/50 focus:bg-white focus:ring-blue-500 transition-all" />
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-slate-700 ml-1">How can we help?</label>
-                  <Textarea placeholder="Tell us more about your career goals..." className="min-h-[150px] rounded-[2rem] border-slate-100 bg-white/50 focus:bg-white focus:ring-blue-500 transition-all p-6" />
+                  <Textarea value={formData.message}
+  onChange={(e) =>
+    setFormData({ ...formData, message: e.target.value })
+  } placeholder="Tell us more about your career goals..." className="min-h-[150px] rounded-[2rem] border-slate-100 bg-white/50 focus:bg-white focus:ring-blue-500 transition-all p-6" />
                 </div>
 
-                <Button className="w-full h-16 rounded-[2rem] bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-800 text-white text-lg font-bold shadow-lg shadow-blue-200 group transition-all duration-300">
+                <Button type="submit" className="w-full h-16 rounded-[2rem] bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-800 text-white text-lg font-bold shadow-lg shadow-blue-200 group transition-all duration-300">
                   Send Message
                   <Send className="ml-3 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </Button>
@@ -162,6 +217,7 @@ const ContactPage = () => {
         </div>
       </motion.div>
     </div>
+    </>
   );
 };
 

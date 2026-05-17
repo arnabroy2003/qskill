@@ -149,38 +149,132 @@ const AboutPage = () => {
       </section>
 
       {/* --- WHY QSKILL GRID --- */}
-      <section className="py-32 max-w-7xl mx-auto px-6 text-center">
-        <h2 className="text-4xl font-bold mb-16">Because we teach what <br /> <span className="text-purple-600">colleges often don't.</span></h2>
-        
-        <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
-          {[
-            "Live mentor-led learning",
-            "Practical project experience",
-            "Industry-relevant skills",
-            "Career-focused internships",
-            "Placement readiness"
-          ].map((item, i) => (
-            <motion.div 
-              key={i}
-              whileHover={{ y: -5 }}
-              className="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm font-bold text-slate-700 text-sm flex items-center justify-center text-center leading-tight"
-            >
-              {item}
-            </motion.div>
-          ))}
-        </div>
-        
-        <div className="mt-24 max-w-3xl mx-auto">
-          <p className="text-2xl font-medium text-slate-500 italic">
-            "We are not just building learners — <span className="text-slate-900 font-bold not-italic">we are building future professionals."</span>
-          </p>
-          <div className="mt-12 flex justify-center items-center gap-2">
-            <span className="h-px w-12 bg-slate-200"></span>
-            <span className="text-sm font-bold uppercase tracking-widest text-purple-600">Qskill Leadership</span>
-            <span className="h-px w-12 bg-slate-200"></span>
+      <section className="relative py-32 overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white">
+  
+  {/* Background Glow Effects */}
+  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-purple-500/10 blur-3xl rounded-full"></div>
+  <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-indigo-500/10 blur-3xl rounded-full"></div>
+
+  <div className="relative max-w-7xl mx-auto px-6 text-center z-10">
+
+    {/* Heading */}
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+    >
+      <span className="px-5 py-2 rounded-full border border-purple-200 bg-white/70 backdrop-blur-md text-xs font-bold tracking-[0.25em] uppercase text-purple-600 shadow-sm">
+        Why QSkill
+      </span>
+
+      <h2 className="mt-8 text-5xl md:text-6xl font-black leading-[1.1] tracking-tight text-slate-900">
+        Because we teach what <br />
+        <span className="bg-gradient-to-r from-purple-600 via-fuchsia-500 to-indigo-600 bg-clip-text text-transparent">
+          colleges often don't.
+        </span>
+      </h2>
+
+      <p className="mt-6 max-w-2xl mx-auto text-lg text-slate-500 leading-relaxed">
+        Real-world learning designed for modern careers, startups, and industry expectations.
+      </p>
+    </motion.div>
+
+    {/* Premium Cards */}
+    <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6 mt-20">
+      {[
+        {
+          title: "Live mentor-led learning",
+          icon: "🎯"
+        },
+        {
+          title: "Practical project experience",
+          icon: "⚡"
+        },
+        {
+          title: "Industry-relevant skills",
+          icon: "🚀"
+        },
+        {
+          title: "Career-focused internships",
+          icon: "💼"
+        },
+        {
+          title: "Placement readiness",
+          icon: "🏆"
+        }
+      ].map((item, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: i * 0.1 }}
+          viewport={{ once: true }}
+          whileHover={{
+            y: -10,
+            scale: 1.03,
+          }}
+          className="group relative overflow-hidden rounded-3xl border border-white/40 bg-white/70 backdrop-blur-xl p-8 shadow-[0_10px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_60px_rgba(124,58,237,0.18)] transition-all duration-500"
+        >
+          
+          {/* Hover Glow */}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 via-purple-500/0 to-indigo-500/0 group-hover:from-purple-500/10 group-hover:to-indigo-500/10 transition-all duration-500"></div>
+
+          <div className="relative z-10">
+            <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-purple-600 to-indigo-600 text-white flex items-center justify-center text-2xl shadow-lg">
+              {item.icon}
+            </div>
+
+            <h3 className="mt-6 text-lg font-bold text-slate-800 leading-snug">
+              {item.title}
+            </h3>
+
+            <p className="mt-3 text-sm text-slate-500 leading-relaxed">
+              Learn through practical execution, mentorship, and career-focused guidance.
+            </p>
           </div>
+        </motion.div>
+      ))}
+    </div>
+
+    {/* Quote Section */}
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="mt-32 relative"
+    >
+
+      <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-indigo-500/10 to-fuchsia-500/10 blur-3xl rounded-full"></div>
+
+      <div className="relative rounded-[2rem] border border-white/40 bg-white/60 backdrop-blur-2xl px-10 py-16 shadow-[0_20px_80px_rgba(0,0,0,0.08)]">
+
+        <div className="text-6xl text-purple-200 font-serif leading-none">
+          “
         </div>
-      </section>
+
+        <p className="mt-4 text-2xl md:text-3xl font-medium text-slate-600 italic leading-relaxed max-w-3xl mx-auto">
+          We are not just building learners —
+          <span className="block mt-3 text-slate-900 font-black not-italic">
+            we are building future professionals.
+          </span>
+        </p>
+
+        <div className="mt-12 flex justify-center items-center gap-4">
+          <span className="h-px w-16 bg-gradient-to-r from-transparent to-purple-300"></span>
+
+          <span className="px-5 py-2 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-xs font-bold uppercase tracking-[0.3em] shadow-lg">
+            QSkill Leadership
+          </span>
+
+          <span className="h-px w-16 bg-gradient-to-l from-transparent to-purple-300"></span>
+        </div>
+      </div>
+    </motion.div>
+
+  </div>
+</section>
     </div>
   );
 };

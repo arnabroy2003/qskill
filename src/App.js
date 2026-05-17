@@ -11,6 +11,7 @@ import HireFromUs from "./pages/hire"
 import TestimonialsPage from "./pages/testimonial"
 import InternshipPage from "./pages/internship"
 import ProgramDetailPage from "./pages/programdetails"
+import Requestcandidate from "./pages/requestcandidate";
 import { ChevronRight, Menu, Trophy, Gift, Users2, Rocket, X, Banknote, Globe2, PlaneLanding, GraduationCap, User, ArrowRight, Star, CheckCircle2, ShieldCheck, UserPlus, Users, Laptop, Send, Award, Search, Loader2, ExternalLink, Linkedin, Youtube, Mail, MapPin, ChevronUp } from "lucide-react";
 
 function Header() {
@@ -47,7 +48,7 @@ function Header() {
           <img
             src="https://res.cloudinary.com/dvqqjadcf/image/upload/v1771142458/qskill_logo_trans_rv9jn5.png"
             alt="Qskill Logo"
-            className="h-8 md:h-9 w-auto"
+            className="h-9 md:h-12 w-auto"
           />
         </Link>
 
@@ -149,12 +150,11 @@ function Footer() {
           
           {/* Column 1: Brand Identity */}
           <div className="space-y-6">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-900/20">
-                Q
-              </div>
-              <span className="text-2xl font-extrabold text-white tracking-tight">Qskill</span>
-            </div>
+            <img
+            src="https://res.cloudinary.com/dvqqjadcf/image/upload/v1771142458/qskill_logo_trans_rv9jn5.png"
+            alt="Qskill Logo"
+            className="h-9 md:h-12 w-auto"
+          />
             <p className="text-sm leading-relaxed max-w-xs">
               Empowering the next generation of tech leaders through high-impact live training and industry-recognized internships.
             </p>
@@ -399,6 +399,60 @@ const perks = [
     }
   ];
  // Added more for better loop
+  
+ const logos = [
+  "/college-logo/Clg21.png",
+  "/college-logo/Clg42.jpeg",
+  "/college-logo/clg1.png",
+  "/college-logo/clg10.png",
+  "/college-logo/clg11.png",
+  "/college-logo/clg12.png",
+  "/college-logo/clg13.png",
+  "/college-logo/clg14.png",
+  "/college-logo/clg15.jpeg",
+  "/college-logo/clg16.png",
+  "/college-logo/clg17.jpeg",
+  "/college-logo/clg18.png",
+  "/college-logo/clg19.jpg",
+  "/college-logo/clg2.png",
+  "/college-logo/clg20.png",
+  "/college-logo/clg22.png",
+  "/college-logo/clg23.png",
+  "/college-logo/clg24.png",
+  "/college-logo/clg25.jpeg",
+  "/college-logo/clg26.jpeg",
+  "/college-logo/clg27.png",
+  "/college-logo/clg28.jpg",
+  "/college-logo/clg29.png",
+  "/college-logo/clg3.jpeg",
+  "/college-logo/clg30.png",
+  "/college-logo/clg31.png",
+  "/college-logo/clg32.png",
+  "/college-logo/clg33.png",
+  "/college-logo/clg34.jpeg",
+  "/college-logo/clg35.jpeg",
+  "/college-logo/clg36.png",
+  "/college-logo/clg37.jpeg",
+  "/college-logo/clg39.png",
+  "/college-logo/clg4.png",
+  "/college-logo/clg40.png",
+  "/college-logo/clg41.png",
+  "/college-logo/clg43.png",
+  "/college-logo/clg44.jpeg",
+  "/college-logo/clg45.png",
+  "/college-logo/clg46.jpeg",
+  "/college-logo/clg47.jpeg",
+  "/college-logo/clg48.jpeg",
+  "/college-logo/clg49.png",
+  "/college-logo/clg5.png",
+  "/college-logo/clg6.jpeg",
+  "/college-logo/clg7.png",
+  "/college-logo/clg8.png",
+  "/college-logo/clg9.png",
+];
+
+const row1 = logos.slice(0, Math.ceil(logos.length / 2));
+const row2 = logos.slice(Math.ceil(logos.length / 2));
 
   return (
     <div className="bg-[#fcfdfe] text-slate-900 selection:bg-blue-100 overflow-x-hidden">
@@ -497,11 +551,11 @@ const perks = [
       </section>
 
       {/* --- TECH STACK - MARQUEE STYLE --- */}
-      <section className="py-24 bg-slate-50/50 border-y border-slate-100">
+      <section className="py-20 bg-slate-50/50 border-y border-slate-100">
         <h2 className="text-center text-sm font-semibold uppercase tracking-[0.2em] text-slate-400 mb-12">
           Technologies you will master
         </h2>
-        <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-8 md:gap-16 px-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
+        <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-8 md:gap-16 px-6 opacity-60 hover:opacity-100 transition-all duration-700">
           {techs.map((tech, i) => (
             <div key={i} className="flex items-center gap-3">
               <img src={tech.logo} alt={tech.name} className="w-8 h-8 object-contain" />
@@ -549,7 +603,7 @@ const perks = [
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-4">
         {[
           { num: "01", title: "Apply", icon: <UserPlus />, desc: "Fill the application form and choose your internship program.", color: "from-blue-500 to-indigo-500" },
           { num: "02", title: "Join Community", icon: <Users />, desc: "Get access to our student community for updates and guidance.", color: "from-indigo-500 to-purple-500" },
@@ -597,6 +651,94 @@ const perks = [
     </div>
   </div>
 </section>
+
+<section className="py-16 bg-[#fcfdfe] relative overflow-hidden border-b border-slate-100">
+      {/* Background Subtle Gradient Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(109,40,217,0.03),transparent_60%)] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
+        <motion.span 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-[#6D28D9] font-bold tracking-[0.2em] uppercase text-xs block mb-3"
+        >
+          National Impact
+        </motion.span>
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight"
+        >
+          Our Presence Spans <br className="md:hidden" /> Across India
+        </motion.h2>
+        <motion.p 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="text-slate-500 mt-4 text-base md:text-lg max-w-2xl mx-auto"
+        >
+          Students from top tier colleges and national universities trust Qskill to fast-track their careers.
+        </motion.p>
+      </div>
+
+      {/* --- FLOATING MARQUEE TRACKS --- */}
+      <div className="relative flex flex-col gap-6 w-full overflow-hidden mask-gradient">
+        {/* Left & Right Edge Fades for the Premium "Vanishing" Effect */}
+        <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-[#fcfdfe] to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-[#fcfdfe] to-transparent z-10 pointer-events-none" />
+
+        {/* ROW 1: Moving Left */}
+        <div className="flex w-max whitespace-nowrap">
+          <motion.div
+            animate={{ x: [0, "-50%"] }}
+            transition={{ repeat: Infinity, duration: 45, ease: "linear" }}
+            className="flex gap-8 px-4"
+          >
+            {[...row1, ...row1].map((logoSrc, index) => (
+              <div 
+                key={`row1-${index}`} 
+                className="w-40 h-20 md:w-48 md:h-24 bg-white border border-slate-100 rounded-2xl flex items-center justify-center p-4 shadow-[0_4px_20px_rgba(0,0,0,0.01)] opacity-100 hover:border-[#6D28D9]/30 hover:shadow-md transition-all duration-350 shrink-0"
+              >
+                <img
+                  src={logoSrc}
+                  alt="College Logo"
+                  className="max-w-full max-h-full object-contain"
+                  onError={(e) => {
+                    e.target.closest("div").style.display = "none";
+                  }}
+                />
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* ROW 2: Moving Right */}
+        <div className="flex w-max whitespace-nowrap">
+          <motion.div
+            animate={{ x: ["-50%", 0] }}
+            transition={{ repeat: Infinity, duration: 50, ease: "linear" }}
+            className="flex gap-8 px-4"
+          >
+            {[...row2, ...row2].map((logoSrc, index) => (
+              <div 
+                key={`row2-${index}`} 
+                className="w-40 h-20 md:w-48 md:h-24 bg-white border border-slate-100 rounded-2xl flex items-center justify-center p-4 shadow-[0_4px_20px_rgba(0,0,0,0.01)] opacity-100 hover:border-[#6D28D9]/30 hover:shadow-md transition-all duration-350 shrink-0"
+              >
+                <img 
+                  src={logoSrc} 
+                  alt="College Partner Logo" 
+                  className="max-w-full max-h-full object-contain select-none"
+                  onError={(e) => { e.target.src = "https://placehold.co/150x80/f1f5f9/94a3b8?text=University"; }}
+                />
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+    </section>
 
 <section className="py-32 bg-white relative overflow-hidden">
       {/* Background Decorative Element */}
@@ -650,7 +792,7 @@ const perks = [
             </div>
 
             <Button className="rounded-full px-10 py-8 bg-slate-900 hover:bg-blue-700 text-white font-bold text-lg shadow-xl shadow-blue-100 transition-all hover:scale-105 group">
-              Explore MS Programs <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              Comming soon... <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
           </motion.div>
 
@@ -1087,6 +1229,7 @@ export default function App() {
         <Route path="/testimonial" element={<TestimonialsPage />} />
         <Route path="/internship" element={<InternshipPage />} />
         <Route path="/internship/:id" element={<ProgramDetailPage />} />
+         <Route path="/request-candidate" element={<Requestcandidate />} />
       </Routes>
       <Footer />
     </BrowserRouter>
