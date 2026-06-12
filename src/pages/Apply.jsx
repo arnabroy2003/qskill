@@ -17,7 +17,6 @@ const redirectToBackupForm = () => {
 };
 
 const ApplyInternshipPage = () => {
-  const brandPurple = "#6D28D9";
 
   // Form State
   const [formData, setFormData] = useState({
