@@ -12,6 +12,7 @@ import TestimonialsPage from "./pages/testimonial"
 import InternshipPage from "./pages/internship"
 import ProgramDetailPage from "./pages/programdetails"
 import Requestcandidate from "./pages/requestcandidate";
+import ApplyInternshipPage from "./pages/Apply"
 import { ChevronRight, Menu, Trophy, Gift, Users2, Rocket, X, Banknote, Globe2, PlaneLanding, GraduationCap, User, ArrowRight, Star, CheckCircle2, ShieldCheck, UserPlus, Users, Laptop, Send, Award, Search, Loader2, ExternalLink, Linkedin, Youtube, Mail, MapPin, ChevronUp } from "lucide-react";
 
 function Header() {
@@ -1190,29 +1191,29 @@ function Verify() {
 );
 }
 
-function Apply() {
-  return (
-    <section className="min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-indigo-50 to-blue-100">
-      <Card className="rounded-2xl shadow-xl w-[90vw] max-w-md">
-        <CardContent className="p-8 text-center">
-          <h2 className="text-2xl font-semibold">Qskill Internship</h2>
-          <p className="text-sm text-zinc-600 mt-2">
-            Apply now to join our internship program and work on real-world projects.
-          </p>
+// function Apply() {
+//   return (
+//     <section className="min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-indigo-50 to-blue-100">
+//       <Card className="rounded-2xl shadow-xl w-[90vw] max-w-md">
+//         <CardContent className="p-8 text-center">
+//           <h2 className="text-2xl font-semibold">Qskill Internship</h2>
+//           <p className="text-sm text-zinc-600 mt-2">
+//             Apply now to join our internship program and work on real-world projects.
+//           </p>
 
-          <div className="mt-6">
-            <Button
-              className="rounded-xl w-full"
-              onClick={() => window.location.href = "https://forms.gle/QJAQS8AkiMKuRYEF8"}
-            >
-              Apply for Internship
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
-    </section>
-  );
-}
+//           <div className="mt-6">
+//             <Button
+//               className="rounded-xl w-full"
+//               onClick={() => window.location.href = "https://forms.gle/QJAQS8AkiMKuRYEF8"}
+//             >
+//               Apply for Internship
+//             </Button>
+//           </div>
+//         </CardContent>
+//       </Card>
+//     </section>
+//   );
+// }
 
 
 export default function App() {
@@ -1222,7 +1223,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/verify" element={<Verify />} />
-        <Route path="/apply" element={<Apply />} />
+        <Route path="/apply" element={<ApplyInternshipPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/hirefromus" element={<HireFromUs />} />
