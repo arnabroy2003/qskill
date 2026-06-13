@@ -13,7 +13,7 @@ const redirectToBackupForm = () => {
   );
 
   window.location.href =
-    "https://docs.google.com/forms/d/e/1FAIpQLSeTnNGNUfHswiO1e4gyTjySgbxH_wN8uSkLdmcPPwc-2YxHFA/viewform";
+    "https://docs.google.com/forms/d/e/1FAIpQLScU5wWqA_R7i0UH3Y_qUXMsGSSYfp_riGwHSqxNOXKWuC4m2g/viewform?usp=header";
 };
 
 const ApplyInternshipPage = () => {
@@ -131,7 +131,7 @@ const ApplyInternshipPage = () => {
     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
       {/* New WhatsApp Group Button */}
       <a 
-        href="https://chat.whatsapp.com/LgCuEECiZHz26KmUBaggoo" 
+        href="https://chat.whatsapp.com/FKKcDPQLYCBFVHsUONsrfS?s=cl&p=a&mlu=1" 
         target="_bin_blank" 
         rel="noopener noreferrer"
         className="w-full sm:w-auto inline-flex items-center justify-center rounded-full px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold transition-all shadow-md hover:shadow-lg text-center"
