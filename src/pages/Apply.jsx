@@ -131,7 +131,7 @@ const ApplyInternshipPage = () => {
     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
       {/* New WhatsApp Group Button */}
       <a 
-        href="https://chat.whatsapp.com/HY2FB8VhJ1cDcFbr1Q3XJH?s=cl&p=a&mlu=1" 
+        href="https://chat.whatsapp.com/GT2FKGME1hF4n0O1HIvsiI?s=cl&p=a&mlu=1" 
         target="_bin_blank" 
         rel="noopener noreferrer"
         className="w-full sm:w-auto inline-flex items-center justify-center rounded-full px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold transition-all shadow-md hover:shadow-lg text-center"
