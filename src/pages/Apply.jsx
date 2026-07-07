@@ -37,7 +37,10 @@ const ApplyInternshipPage = () => {
     "Back-End Development",
     "Python Development",
     "Basic Web Development",
-    "AI/ML"
+    "AI/ML",
+    "Data Science",
+    "Full Stack Development",
+    "Java Development"
   ];
 
   const handleChange = (e) => {
@@ -116,7 +119,7 @@ const ApplyInternshipPage = () => {
     </p>
 
     <p className="text-slate-600 text-sm mb-8">
-  You will be able to log in to our official student portal using your registered email address after 1st July, 2026:
+  You will be able to log in to our official student portal using your registered email address after 1st August, 2026:
   <a
     href="https://student.qskill.in/"
     target="_blank"
@@ -131,7 +134,7 @@ const ApplyInternshipPage = () => {
     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
       {/* New WhatsApp Group Button */}
       <a 
-        href="https://chat.whatsapp.com/GT2FKGME1hF4n0O1HIvsiI?s=cl&p=a&mlu=1" 
+        href="https://chat.whatsapp.com/HRPbGhHMo91BJapRfNzVOv" 
         target="_bin_blank" 
         rel="noopener noreferrer"
         className="w-full sm:w-auto inline-flex items-center justify-center rounded-full px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold transition-all shadow-md hover:shadow-lg text-center"

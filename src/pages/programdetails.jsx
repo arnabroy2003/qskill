@@ -163,11 +163,11 @@ const ProgramDetailPage = () => {
                   <span className="font-bold text-slate-900 text-sm">{program.level}</span>
                 </div>
               </div>
-
-              <Button onClick={() => window.open("https://forms.gle/zkMoJvM1k2rQZdbA8", "_blank")} className="w-full py-8 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-700 text-white text-xl font-bold shadow-xl shadow-blue-200 hover:scale-[1.02] transition-all active:scale-95 group">
+              <Link to="/apply">
+              <Button className="w-full py-8 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-700 text-white text-xl font-bold shadow-xl shadow-blue-200 hover:scale-[1.02] transition-all active:scale-95 group">
                 Apply Now <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-
+              </Link>
               <div className="mt-8 pt-8 border-t border-slate-100 space-y-4 px-2">
                 <div className="flex items-center gap-3 text-sm font-bold text-slate-700">
                   <div className="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center">
