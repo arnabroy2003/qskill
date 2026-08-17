@@ -225,17 +225,17 @@ function Footer() {
           <div className="relative">
             <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-3xl backdrop-blur-sm">
               <p className="text-[10px] font-bold text-blue-400 uppercase tracking-[0.2em] mb-3">Parent Company</p>
-              <h5 className="text-white font-bold text-lg mb-2">SR India</h5>
+              <h5 className="text-white font-bold text-lg mb-2">Squrcell Group</h5>
               <p className="text-xs leading-relaxed mb-4 text-slate-400">
-                Qskill is a proud initiative by SR India, dedicated to excellence in professional development.
+                Qskill is a proud initiative by Squarcell, dedicated to excellence in professional development.
               </p>
               <a 
-                href="https://www.srindia.co/" 
+                href="https://www.squarcell.com/" 
                 target="_blank" 
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 text-xs font-bold text-white hover:text-blue-400 transition-colors group"
               >
-                Visit SR India <ExternalLink size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                Visit Squarcell <ExternalLink size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </a>
             </div>
           </div>
