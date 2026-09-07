@@ -568,7 +568,7 @@ function Home() {
             <motion.img
               animate={{ y: [0, -20, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              src="https://illustrations.popsy.co/white/studying.svg"
+              src="/popsy.svg"
               alt="Learning Banner"
               className="w-full max-w-2xl mx-auto drop-shadow-2xl"
             />
