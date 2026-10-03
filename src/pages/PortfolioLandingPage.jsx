@@ -17,11 +17,8 @@ import {
   FileText,
   ShieldCheck,
   CheckCircle2,
-  Share2,
-  Layers,
   Building2,
   Lock,
-  Globe2,
   Code2,
   Sparkle
 } from 'lucide-react';
