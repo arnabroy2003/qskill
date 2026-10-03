@@ -12,6 +12,7 @@ import TestimonialsPage from "./pages/testimonial";
 import InternshipPage from "./pages/internship";
 import ProgramDetailPage from "./pages/programdetails";
 import Requestcandidate from "./pages/requestcandidate";
+import PortfolioLandingPage from "./pages/PortfolioLandingPage"
 import ApplyInternshipPage from "./pages/Apply";
 import AuthPage from "./pages/login";
 import { 
@@ -309,7 +310,7 @@ function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={18} className="text-blue-500 shrink-0" />
-                <a href="mailto:career@squarcell.com" className="hover:text-white transition-colors">career@squarcell.com</a>
+                <a href="mailto:services@qskill.in" className="hover:text-white transition-colors">services@qskill.in</a>
               </li>
             </ul>
           </div>
@@ -1264,6 +1265,7 @@ export default function App() {
         <Route path="/internship/:id" element={<ProgramDetailPage />} />
         <Route path="/request-candidate" element={<Requestcandidate />} />
         <Route path="/login" element={<AuthPage />} />
+         <Route path="/portfolio" element={<PortfolioLandingPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

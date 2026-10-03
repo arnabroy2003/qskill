@@ -111,13 +111,13 @@ const handleSubmit = async (e) => {
               
               <div className="space-y-8">
                 {/* Email Card */}
-                <a href="mailto:career@squarcell.com" className="group flex items-center gap-6 p-4 rounded-2xl hover:bg-blue-50 transition-colors">
+                <a href="mailto:services@qskill.in" className="group flex items-center gap-6 p-4 rounded-2xl hover:bg-blue-50 transition-colors">
                   <div className="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
                     <Mail className="w-6 h-6" />
                   </div>
                   <div>
                     <p className="text-sm font-medium text-slate-400 uppercase tracking-wider">Email us at</p>
-                    <p className="text-lg font-bold text-slate-700">career@squarcell.com</p>
+                    <p className="text-lg font-bold text-slate-700">services@qskill.in</p>
                   </div>
                 </a>
 
