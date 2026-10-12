@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 /**
  * ============================================================================
@@ -21,7 +21,7 @@ import React, { useState, useEffect } from 'react';
 export default function PrivacyPolicy() {
   const [activeSection, setActiveSection] = useState('about-qskill');
 
-  const sections = [
+  const sections = useMemo(() => [
     { id: 'about-qskill', label: '1. About QSkill' },
     { id: 'information-we-collect', label: '2. Information We Collect' },
     { id: 'google-auth', label: '3. Google Sign-In and Authentication' },
@@ -36,7 +36,7 @@ export default function PrivacyPolicy() {
     { id: 'third-party-links', label: '12. Third-Party Links' },
     { id: 'policy-changes', label: '13. Changes to This Policy' },
     { id: 'contact-concerns', label: '14. Contact and Privacy Concerns' },
-  ];
+  ], []);
 
   useEffect(() => {
     const handleScroll = () => {
