@@ -15,6 +15,8 @@ import Requestcandidate from "./pages/requestcandidate";
 import PortfolioLandingPage from "./pages/PortfolioLandingPage"
 import ApplyInternshipPage from "./pages/Apply";
 import AuthPage from "./pages/login";
+import TrustTransparency from "./pages/TrustTransparency"
+import PrivacyPolicy from "./pages/PrivacyPolicy"
 import { 
   ChevronRight, 
   Menu, 
@@ -62,7 +64,7 @@ function Header({ user, showProfileMenu, setShowProfileMenu }) {
     { name: 'Internships', path: '/internship' },
     { name: 'Verify', path: '/verify' },
     { name: 'About Us', path: '/about' },
-    { name: 'Contact Us', path: '/contact' },
+    { name: 'Contact Us', path: '/contact' }
   ];
 
   return (
@@ -284,7 +286,8 @@ function Footer() {
                 { name: "Internships", path: "/internship" },
                 { name: "Verify Certificate", path: "/verify" },
                 { name: "About Us", path: "/about" },
-                { name: "Contact Us", path: "/contact" }
+                { name: "Contact Us", path: "/contact" },
+                { name: 'Trust & Transparency', path: '/trust-and-transparency' }
               ].map((item) => (
                 <li key={item.name}>
                   <Link
@@ -342,7 +345,13 @@ function Footer() {
           <p className="text-[10px] uppercase tracking-widest text-slate-500">
             © {new Date().getFullYear()} Qskill Inc. All rights reserved. 
             <span className="mx-2">|</span>
-            <span className="hover:text-white cursor-pointer transition-colors">Privacy Policy</span>
+            <Link
+  to="/privacy-policy"
+  onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
+  className="hover:text-white cursor-pointer transition-colors"
+>
+  Privacy Policy
+</Link>
           </p>
           
           <button 
@@ -1265,7 +1274,9 @@ export default function App() {
         <Route path="/internship/:id" element={<ProgramDetailPage />} />
         <Route path="/request-candidate" element={<Requestcandidate />} />
         <Route path="/login" element={<AuthPage />} />
-         <Route path="/portfolio" element={<PortfolioLandingPage />} />
+        <Route path="/portfolio" element={<PortfolioLandingPage />} />
+        <Route path="/trust-and-transparency" element={<TrustTransparency />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       </Routes>
       <Footer />
     </BrowserRouter>
