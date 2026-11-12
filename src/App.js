@@ -45,6 +45,8 @@ import {
   Youtube, 
   Mail, 
   MapPin, 
+  Phone,
+  Sparkles,
   ChevronUp 
 } from "lucide-react";
 
@@ -88,7 +90,7 @@ function Header({ user, showProfileMenu, setShowProfileMenu }) {
 
         {/* DESKTOP NAV */}
         <nav className="hidden md:flex items-center" onMouseLeave={() => setHoveredLink(null)}>
-          <div className="flex items-center mr-6">
+          <div className="flex items-center mr-6 gap-1">
             {navLinks.map((link) => (
               <Link 
                 key={link.name} 
@@ -117,6 +119,31 @@ function Header({ user, showProfileMenu, setShowProfileMenu }) {
                 </AnimatePresence>
               </Link>
             ))}
+
+            {/* Arena Event Menu */}
+            <a
+              href="https://arena.qskill.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative group ml-2 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[13px] font-bold transition-all duration-300 overflow-hidden bg-gradient-to-r from-[#240b36] via-[#170728] to-[#240b36] text-purple-200 border border-purple-500/50 shadow-[0_0_15px_rgba(168,85,247,0.45)] hover:shadow-[0_0_25px_rgba(234,179,8,0.7),0_0_10px_rgba(250,204,21,0.5)] hover:border-amber-400 hover:text-amber-200 hover:scale-[1.03] active:scale-[0.98]"
+            >
+              {/* Shimmer sweep effect */}
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
+
+              {/* Glowing Pulse Dot */}
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 group-hover:bg-amber-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-400 group-hover:bg-amber-400 transition-colors"></span>
+              </span>
+
+              <Sparkles size={13} className="text-purple-300 group-hover:text-amber-300 transition-colors" />
+
+              <span className="tracking-wide">Arena</span>
+
+              <span className="text-[9px] font-black tracking-wider uppercase px-1.5 py-0.5 rounded-full bg-purple-500/25 border border-purple-400/30 text-purple-200 group-hover:bg-amber-500/25 group-hover:border-amber-400/50 group-hover:text-amber-300 transition-all duration-300">
+                Event
+              </span>
+            </a>
           </div>
           
           {user ? (
@@ -205,7 +232,7 @@ function Header({ user, showProfileMenu, setShowProfileMenu }) {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-white border-t border-slate-100 overflow-hidden"
           >
-            <div className="flex flex-col p-4 gap-1">
+            <div className="flex flex-col p-4 gap-2">
               {navLinks.map((link) => (
                 <Link 
                   key={link.name} 
@@ -218,6 +245,27 @@ function Header({ user, showProfileMenu, setShowProfileMenu }) {
                   {link.name}
                 </Link>
               ))}
+
+              {/* Arena Event Mobile Menu */}
+              <a 
+                href="https://arena.qskill.in" 
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="relative group flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold bg-gradient-to-r from-[#240b36] via-[#170728] to-[#240b36] text-purple-200 border border-purple-500/50 shadow-[0_0_15px_rgba(168,85,247,0.4)] hover:shadow-[0_0_22px_rgba(234,179,8,0.6)] hover:border-amber-400 hover:text-amber-200 transition-all"
+              >
+                <div className="flex items-center gap-2.5">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 group-hover:bg-amber-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-400 group-hover:bg-amber-400 transition-colors"></span>
+                  </span>
+                  <Sparkles size={15} className="text-purple-300 group-hover:text-amber-300 transition-colors" />
+                  <span className="tracking-wide">Arena</span>
+                </div>
+                <span className="text-[10px] font-black tracking-wider uppercase px-2 py-0.5 rounded-full bg-purple-500/25 border border-purple-400/30 text-purple-200 group-hover:bg-amber-500/25 group-hover:border-amber-400/50 group-hover:text-amber-300 transition-all">
+                  Event
+                </span>
+              </a>
               <div className="px-4 py-2">
                 <Button onClick={() => window.location.href = "/login"} className="w-full h-10 bg-brandPurple text-white rounded-xl text-sm font-bold">
                   Portal Login
@@ -308,8 +356,16 @@ function Footer() {
             <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-xs">Reach Out</h4>
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3">
-                <MapPin size={18} className="text-blue-500 shrink-0" />
+                <MapPin size={18} className="text-blue-500 shrink-0 mt-0.5" />
                 <span>Ghansoli, Navi Mumbai, <br />Maharashtra, India</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <MapPin size={18} className="text-blue-500 shrink-0 mt-0.5" />
+                <span>Baruipur, Kolkata, <br />West Bengal, India</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Phone size={18} className="text-blue-500 shrink-0" />
+                <a href="tel:+919330354596" className="hover:text-white transition-colors">+91 9330354596</a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={18} className="text-blue-500 shrink-0" />

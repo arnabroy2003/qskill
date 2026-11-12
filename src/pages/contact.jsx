@@ -121,14 +121,37 @@ const handleSubmit = async (e) => {
                   </div>
                 </a>
 
-                {/* Address Card */}
+                {/* Phone Card */}
+                <a href="tel:+919330354596" className="group flex items-center gap-6 p-4 rounded-2xl hover:bg-blue-50 transition-colors">
+                  <div className="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                    <Phone className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-slate-400 uppercase tracking-wider">Call us at</p>
+                    <p className="text-lg font-bold text-slate-700">+91 9330354596</p>
+                  </div>
+                </a>
+
+                {/* Address Cards */}
                 <div className="flex items-center gap-6 p-4">
-                  <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center">
+                  <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center shrink-0">
                     <MapPin className="w-6 h-6" />
                   </div>
                   <div>
                     <p className="text-sm font-medium text-slate-400 uppercase tracking-wider">Visit our Office</p>
                     <p className="text-lg font-bold text-slate-700">Ghansoli, Navi Mumbai</p>
+                    <p className="text-xs text-slate-500 font-medium">Maharashtra, India</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-6 p-4">
+                  <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center shrink-0">
+                    <MapPin className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-slate-400 uppercase tracking-wider">Visit our Office</p>
+                    <p className="text-lg font-bold text-slate-700">Baruipur, Kolkata</p>
+                    <p className="text-xs text-slate-500 font-medium">West Bengal, India</p>
                   </div>
                 </div>
               </div>
