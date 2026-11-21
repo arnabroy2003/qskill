@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { 
   Building2, CheckCircle2, UserCheck, 
   Briefcase, Search, MessageSquare, Handshake,
@@ -51,9 +52,11 @@ const HireFromUs = () => {
               Equipped with job-ready skills and hands-on project experience, our learners are prepared to contribute to your team from day one.
             </p>
             <div className="mt-10 flex flex-wrap gap-4 justify-center md:justify-start">
-              <Button className="bg-blue-600 hover:bg-blue-700 px-8 py-7 rounded-full text-lg font-bold shadow-xl shadow-blue-900/20 group">
-                Hire Talent Now <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              <Link to="/request-candidate" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                <Button className="bg-blue-600 hover:bg-blue-700 px-8 py-7 rounded-full text-lg font-bold shadow-xl shadow-blue-900/20 group">
+                  Hire Talent Now <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
             </div>
           </motion.div>
 
@@ -161,9 +164,11 @@ const HireFromUs = () => {
             <p className="text-slate-400 text-lg mb-10 max-w-2xl mx-auto">
               Whether you're a startup, agency, or growing business, we help you connect with skilled young talent ready to work.
             </p>
-            <Button className="bg-blue-600 text-white px-12 py-8 rounded-full text-xl font-bold shadow-2xl hover:scale-105 transition-all">
-              Request Candidates
-            </Button>
+            <Link to="/request-candidate" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+              <Button className="bg-blue-600 text-white px-12 py-8 rounded-full text-xl font-bold shadow-2xl hover:scale-105 transition-all">
+                Request Candidates
+              </Button>
+            </Link>
           </div>
           {/* Subtle Abstract Background */}
           <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">

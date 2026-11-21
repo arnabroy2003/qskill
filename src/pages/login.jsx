@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Mail, Lock, User, ArrowRight, Eye, EyeOff, Sparkles, ShieldCheck 
@@ -8,9 +9,20 @@ import { Input } from "../components/ui/input";
 import { supabase } from "../lib/supabase";
 
 const AuthPage = () => {
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        navigate('/dashboard', { replace: true });
+      }
+    };
+    checkUser();
+  }, [navigate]);
 
   // Form states
   const [loginForm, setLoginForm] = useState({ email: '', password: '' });
@@ -31,23 +43,20 @@ const AuthPage = () => {
   };
 
   const handleLoginSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const { data, error } =
-    await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signInWithPassword({
       email: loginForm.email,
       password: loginForm.password,
     });
 
-  if (error) {
-    alert(error.message);
-    return;
-  }
+    if (error) {
+      alert(error.message);
+      return;
+    }
 
-  console.log("Logged in:", data.user);
-
-  alert("Login successful!");
-};
+    navigate('/dashboard');
+  };
 
   const handleSignupSubmit = async (e) => {
   e.preventDefault();
@@ -73,9 +82,12 @@ const AuthPage = () => {
     return;
   }
 
-  alert("Account created successfully!");
-
-  console.log(data);
+  if (data?.session) {
+    navigate('/dashboard');
+  } else {
+    alert("Account created successfully! Please sign in or check your email for confirmation.");
+    setIsLogin(true);
+  }
 };
 
   return (
@@ -139,17 +151,17 @@ const AuthPage = () => {
           <button
             type="button"
             onClick={async () => {
-  const { error } = await supabase.auth.signInWithOAuth({
-    provider: 'google',
-    options: {
-      redirectTo: `${window.location.origin}/`,
-    },
-  });
+              const { error } = await supabase.auth.signInWithOAuth({
+                provider: 'google',
+                options: {
+                  redirectTo: `${window.location.origin}/dashboard`,
+                },
+              });
 
-  if (error) {
-    alert(error.message);
-  }
-}}
+              if (error) {
+                alert(error.message);
+              }
+            }}
             className="w-full h-13 py-3 px-4 rounded-2xl bg-white border border-slate-200 hover:border-slate-300 text-slate-700 font-semibold text-sm flex items-center justify-center gap-3 transition-all hover:shadow-sm active:scale-[0.99] mb-6"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">

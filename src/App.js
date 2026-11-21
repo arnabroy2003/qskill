@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "./components/ui/button";
 import { Card, CardContent } from "./components/ui/card";
@@ -17,6 +17,8 @@ import ApplyInternshipPage from "./pages/Apply";
 import AuthPage from "./pages/login";
 import TrustTransparency from "./pages/TrustTransparency"
 import PrivacyPolicy from "./pages/PrivacyPolicy"
+import OpportunitiesSection from "./pages/opportunites"
+import DashboardPage from "./pages/dashboard"
 import { 
   ChevronRight, 
   Menu, 
@@ -47,13 +49,34 @@ import {
   MapPin, 
   Phone,
   Sparkles,
-  ChevronUp 
+  ChevronUp,
+  ChevronDown,
+  Briefcase,
+  FolderGit2,
+  LayoutDashboard,
+  LogOut
 } from "lucide-react";
+
+// Official WhatsApp Vector Icon
+const WhatsAppIcon = ({ className = "w-5 h-5" }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+  </svg>
+);
 
 function Header({ user, showProfileMenu, setShowProfileMenu }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hoveredLink, setHoveredLink] = useState(null);
+  const [exploreOpen, setExploreOpen] = useState(false);
+  const [mobileExploreOpen, setMobileExploreOpen] = useState(false);
+  const exploreRef = useRef(null);
+  const profileRef = useRef(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -62,12 +85,60 @@ function Header({ user, showProfileMenu, setShowProfileMenu }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (exploreRef.current && !exploreRef.current.contains(event.target)) {
+        setExploreOpen(false);
+      }
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setShowProfileMenu(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [setShowProfileMenu]);
+
+  useEffect(() => {
+    setExploreOpen(false);
+    setShowProfileMenu(false);
+    setOpen(false);
+  }, [location.pathname, setShowProfileMenu]);
+
   const navLinks = [
     { name: 'Internships', path: '/internship' },
     { name: 'Verify', path: '/verify' },
     { name: 'About Us', path: '/about' },
     { name: 'Contact Us', path: '/contact' }
   ];
+
+  const exploreItems = [
+    {
+      title: "Student Portal",
+      desc: "Access your dashboard, tasks & mentor feedback",
+      path: "https://student.qskill.in/",
+      icon: <GraduationCap size={18} className="text-purple-600 group-hover:text-white transition-colors" />,
+      iconBg: "bg-purple-100 group-hover:bg-brandPurple",
+      badge: "LMS"
+    },
+    {
+      title: "Hire From Us",
+      desc: "Recruit pre-trained developers & tech interns",
+      path: "/hirefromus",
+      icon: <Briefcase size={18} className="text-blue-600 group-hover:text-white transition-colors" />,
+      iconBg: "bg-blue-100 group-hover:bg-blue-600",
+      badge: "Employers"
+    },
+    {
+      title: "Opportunites",
+      desc: "Freelance, Paid Projects, Jobs and more",
+      path: "/opportunites",
+      icon: <FolderGit2 size={18} className="text-emerald-600 group-hover:text-white transition-colors" />,
+      iconBg: "bg-emerald-100 group-hover:bg-emerald-600",
+      badge: "Discover"
+    }
+  ];
+
+  const isExploreActive = ['/login', '/hirefromus', '/portfolio'].includes(location.pathname);
 
   return (
     <header 
@@ -120,6 +191,93 @@ function Header({ user, showProfileMenu, setShowProfileMenu }) {
               </Link>
             ))}
 
+            {/* EXPLORE DROPDOWN */}
+            <div 
+              ref={exploreRef}
+              className="relative"
+              onMouseEnter={() => setExploreOpen(true)}
+              onMouseLeave={() => setExploreOpen(false)}
+            >
+              <button
+                type="button"
+                onClick={() => setExploreOpen((prev) => !prev)}
+                onMouseEnter={() => setHoveredLink("Explore")}
+                className={`relative px-4 py-2 text-[14px] font-medium transition-colors duration-300 flex items-center gap-1.5 focus:outline-none ${
+                  isExploreActive || exploreOpen ? "text-brandPurple font-semibold" : "text-slate-500 hover:text-slate-900"
+                }`}
+                aria-expanded={exploreOpen}
+              >
+                <span>Explore</span>
+                <ChevronDown 
+                  size={14} 
+                  className={`transition-transform duration-300 ${
+                    exploreOpen ? "rotate-180 text-brandPurple" : "text-slate-400 group-hover:text-slate-700"
+                  }`} 
+                />
+
+                {/* Magnetic Hover/Active Underline */}
+                <AnimatePresence>
+                  {(hoveredLink === "Explore" || isExploreActive) && (
+                    <motion.div 
+                      layoutId="nav-pill"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className={`absolute bottom-0 left-2 right-2 h-[2px] rounded-full ${
+                        isExploreActive ? "bg-brandPurple" : "bg-slate-300"
+                      }`}
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                </AnimatePresence>
+              </button>
+
+              {/* DROPDOWN MENU */}
+              <AnimatePresence>
+                {exploreOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 6, scale: 0.96 }}
+                    transition={{ duration: 0.18, ease: "easeOut" }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50 w-80 sm:w-88"
+                  >
+                    <div className="bg-white rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-100 p-2 overflow-hidden ring-1 ring-slate-900/5">
+                      <div className="space-y-1">
+                        {exploreItems.map((item) => (
+                          <Link
+                            key={item.title}
+                            to={item.path}
+                            onClick={() => setExploreOpen(false)}
+                            className="group flex items-start gap-3.5 p-3 rounded-xl hover:bg-slate-50 transition-all duration-200"
+                          >
+                            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 ${item.iconBg}`}>
+                              {item.icon}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center justify-between">
+                                <span className="text-sm font-bold text-slate-800 group-hover:text-brandPurple transition-colors">
+                                  {item.title}
+                                </span>
+                                {item.badge && (
+                                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 group-hover:bg-purple-100 group-hover:text-purple-700 transition-colors">
+                                    {item.badge}
+                                  </span>
+                                )}
+                              </div>
+                              <p className="text-xs text-slate-500 font-normal mt-0.5 leading-snug">
+                                {item.desc}
+                              </p>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
             {/* Arena Event Menu */}
             <a
               href="https://arena.qskill.in"
@@ -147,11 +305,11 @@ function Header({ user, showProfileMenu, setShowProfileMenu }) {
           </div>
           
           {user ? (
-            <div className="relative">
+            <div className="relative" ref={profileRef}>
               <button
                 type="button"
                 onClick={() => setShowProfileMenu((prev) => !prev)}
-                className="w-10 h-10 rounded-full overflow-hidden border-2 border-slate-200 hover:border-indigo-400 transition"
+                className="w-10 h-10 rounded-full overflow-hidden border-2 border-slate-200 hover:border-brandPurple transition"
               >
                 {user.user_metadata?.avatar_url ? (
                   <img
@@ -160,7 +318,7 @@ function Header({ user, showProfileMenu, setShowProfileMenu }) {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full bg-indigo-600 text-white flex items-center justify-center font-bold">
+                  <div className="w-full h-full bg-[#632967] text-white flex items-center justify-center font-bold">
                     {(
                       user.user_metadata?.full_name ||
                       user.user_metadata?.first_name ||
@@ -174,25 +332,27 @@ function Header({ user, showProfileMenu, setShowProfileMenu }) {
               </button>
 
               {showProfileMenu && (
-                <div className="absolute right-0 top-12 w-64 bg-white rounded-xl shadow-xl border border-slate-200 p-3 z-50">
+                <div className="absolute right-0 top-12 w-64 bg-white rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-200 p-3 z-50">
                   <div className="px-3 py-2 border-b border-slate-100 mb-2">
-                    <p className="font-semibold text-slate-900 truncate">
+                    <p className="font-semibold text-slate-900 text-sm truncate">
                       {user.user_metadata?.full_name ||
                         user.user_metadata?.first_name ||
                         "User"}
                     </p>
 
-                    <p className="text-sm text-slate-500 truncate">
+                    <p className="text-xs text-slate-500 truncate mt-0.5">
                       {user.email}
                     </p>
                   </div>
 
-                  <a
-                    href="/login"
-                    className="block px-3 py-2 rounded-lg hover:bg-slate-100 text-slate-700"
+                  <Link
+                    to="/dashboard"
+                    onClick={() => setShowProfileMenu(false)}
+                    className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-purple-50 text-slate-700 hover:text-brandPurple font-semibold text-sm transition-colors"
                   >
-                    Dashboard
-                  </a>
+                    <LayoutDashboard size={16} className="text-brandPurple" />
+                    <span>Dashboard</span>
+                  </Link>
 
                   <button
                     type="button"
@@ -200,20 +360,21 @@ function Header({ user, showProfileMenu, setShowProfileMenu }) {
                       await supabase.auth.signOut();
                       setShowProfileMenu(false);
                     }}
-                    className="w-full text-left px-3 py-2 rounded-lg hover:bg-red-50 text-red-600"
+                    className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-red-50 text-red-600 font-semibold text-sm transition-colors mt-1"
                   >
-                    Logout
+                    <LogOut size={16} />
+                    <span>Logout</span>
                   </button>
                 </div>
               )}
             </div>
           ) : (
-            <a
-              href="/login"
+            <Link
+              to="/login"
               className="hidden md:flex items-center justify-center rounded-xl bg-slate-900 text-white px-5 py-2.5 font-semibold text-sm hover:bg-slate-800 transition"
             >
               Login
-            </a>
+            </Link>
           )}
         </nav>
 
@@ -232,7 +393,7 @@ function Header({ user, showProfileMenu, setShowProfileMenu }) {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-white border-t border-slate-100 overflow-hidden"
           >
-            <div className="flex flex-col p-4 gap-2">
+            <div className="flex flex-col p-4 gap-1.5">
               {navLinks.map((link) => (
                 <Link 
                   key={link.name} 
@@ -245,6 +406,56 @@ function Header({ user, showProfileMenu, setShowProfileMenu }) {
                   {link.name}
                 </Link>
               ))}
+
+              {/* Mobile Explore Accordion */}
+              <div className="rounded-xl overflow-hidden border border-slate-100 bg-slate-50/60">
+                <button
+                  type="button"
+                  onClick={() => setMobileExploreOpen((prev) => !prev)}
+                  className={`w-full flex items-center justify-between px-4 py-3 text-sm font-semibold transition-colors ${
+                    isExploreActive ? "text-brandPurple font-bold" : "text-slate-700"
+                  }`}
+                >
+                  <span className="flex items-center gap-2">Explore</span>
+                  <ChevronDown 
+                    size={16} 
+                    className={`transition-transform duration-200 ${
+                      mobileExploreOpen ? "rotate-180 text-brandPurple" : "text-slate-400"
+                    }`} 
+                  />
+                </button>
+
+                <AnimatePresence>
+                  {mobileExploreOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="px-2 pb-2 space-y-1 overflow-hidden"
+                    >
+                      {exploreItems.map((item) => (
+                        <Link
+                          key={item.title}
+                          to={item.path}
+                          onClick={() => {
+                            setOpen(false);
+                            setMobileExploreOpen(false);
+                          }}
+                          className="flex items-center gap-3 p-2.5 rounded-lg text-xs font-semibold text-slate-700 hover:bg-white transition-colors"
+                        >
+                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${item.iconBg}`}>
+                            {item.icon}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="font-bold text-slate-800 text-[13px]">{item.title}</p>
+                            <p className="text-[11px] text-slate-500 font-normal truncate">{item.desc}</p>
+                          </div>
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
 
               {/* Arena Event Mobile Menu */}
               <a 
@@ -266,11 +477,60 @@ function Header({ user, showProfileMenu, setShowProfileMenu }) {
                   Event
                 </span>
               </a>
-              <div className="px-4 py-2">
-                <Button onClick={() => window.location.href = "/login"} className="w-full h-10 bg-brandPurple text-white rounded-xl text-sm font-bold">
-                  Portal Login
-                </Button>
-              </div>
+              {user ? (
+                <div className="p-4 border-t border-slate-100 bg-slate-50/80 rounded-2xl mx-1 my-2 space-y-3">
+                  <div className="flex items-center gap-3">
+                    {user.user_metadata?.avatar_url ? (
+                      <img
+                        src={user.user_metadata.avatar_url}
+                        alt="Profile"
+                        className="w-10 h-10 rounded-full object-cover border border-slate-200"
+                      />
+                    ) : (
+                      <div className="w-10 h-10 rounded-full bg-brandPurple text-white flex items-center justify-center font-bold text-sm">
+                        {(user.user_metadata?.full_name || user.email || "U").charAt(0).toUpperCase()}
+                      </div>
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <p className="font-bold text-slate-800 text-sm truncate">
+                        {user.user_metadata?.full_name || user.user_metadata?.first_name || "User"}
+                      </p>
+                      <p className="text-xs text-slate-500 truncate">{user.email}</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 pt-1">
+                    <Link
+                      to="/dashboard"
+                      onClick={() => setOpen(false)}
+                      className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-brandPurple text-white text-xs font-bold shadow-sm"
+                    >
+                      <LayoutDashboard size={14} />
+                      Dashboard
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={async () => {
+                        await supabase.auth.signOut();
+                        setOpen(false);
+                      }}
+                      className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-white border border-slate-200 text-red-600 text-xs font-bold hover:bg-red-50"
+                    >
+                      <LogOut size={14} />
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="px-4 py-2">
+                  <Link
+                    to="/login"
+                    onClick={() => setOpen(false)}
+                    className="w-full h-10 bg-brandPurple text-white rounded-xl text-sm font-bold flex items-center justify-center"
+                  >
+                    Portal Login
+                  </Link>
+                </div>
+              )}
             </div>
           </motion.div>
         )}
@@ -1155,6 +1415,31 @@ function Home() {
            <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-400/20 rounded-full translate-y-1/2 -translate-x-1/2 blur-2xl"></div>
         </div>
       </section>
+
+      {/* FLOATING WHATSAPP CHAT BUTTON */}
+      <a
+        href="https://wa.me/919330354596?text=Hi%20QSkill%2C%20I%20have%20a%20query."
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with QSkill on WhatsApp"
+        className="fixed bottom-6 right-6 z-50 group flex items-center select-none"
+      >
+        {/* Animated Speech Bubble / Tooltip */}
+        <div className="relative flex items-center gap-2.5 bg-white text-slate-800 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.12)] border border-slate-200/90 opacity-0 translate-x-3 scale-95 pointer-events-none group-hover:opacity-100 group-hover:translate-x-0 group-hover:scale-100 transition-all duration-300 ease-out whitespace-nowrap mr-3.5">
+          <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse shrink-0" />
+          <span>
+            Have a query? <strong className="text-emerald-600 font-extrabold">Let's Talk</strong>
+          </span>
+          {/* Arrow pointing to WhatsApp button */}
+          <div className="absolute -right-1.5 top-1/2 -translate-y-1/2 w-3 h-3 bg-white border-t border-r border-slate-200/90 rotate-45 pointer-events-none" />
+        </div>
+
+        {/* WhatsApp Icon Circle */}
+        <div className="relative w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white flex items-center justify-center shadow-lg shadow-emerald-500/35 hover:shadow-xl hover:shadow-emerald-500/50 hover:scale-110 active:scale-95 transition-all duration-300">
+          <span className="absolute -inset-1 rounded-full bg-emerald-400 opacity-25 animate-ping pointer-events-none group-hover:opacity-0 transition-opacity" />
+          <WhatsAppIcon className="w-7 h-7 fill-white" />
+        </div>
+      </a>
     </div>
   );
 }
@@ -1330,9 +1615,11 @@ export default function App() {
         <Route path="/internship/:id" element={<ProgramDetailPage />} />
         <Route path="/request-candidate" element={<Requestcandidate />} />
         <Route path="/login" element={<AuthPage />} />
+        <Route path="/dashboard" element={<DashboardPage user={user} />} />
         <Route path="/portfolio" element={<PortfolioLandingPage />} />
         <Route path="/trust-and-transparency" element={<TrustTransparency />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/opportunites" element={<OpportunitiesSection />} />
       </Routes>
       <Footer />
     </BrowserRouter>
